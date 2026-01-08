@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /*
 @brief A function that checks whether a string contains
@@ -41,11 +41,11 @@ int	check_digits(char *str)
 }
 
 /*
-@brief A function that checks whether the 
+@brief A function that checks whether the
 */
 /*int	check_unique_and_range(char *str, int *arr)
 {
-	
+
 }*/
 
 /*
@@ -59,7 +59,7 @@ The following conditions has to be met for the argument to be valid:
 - The input can only include digits and '+' and '-' signs, separated by spaces.
 - The input numbers has to be unique.
 - The input numbers need to be within the range of an integer.
- 
+
 The function also prints "Error\n" to the standard error if the input arguments
 are not valid.
 */

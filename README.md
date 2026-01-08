@@ -42,9 +42,16 @@ The following operations can be used:
   - If there are 4 elements: `pb` twice. Calculate the cost (the number of operations it takes) to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
   - If there are 5 elements: `pb` twice. Sort `stack a` using the 3 element method above. Calculate the cost to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
   - If there are more than 5 elements:
+    - Step 1: Find the longest increasing sequence (LIS) in `stack a`.
+    - Step 2: Calculate the cost of putting each non-LIS numbers in `stack a` into its correct position in `stack b`, so that the numbers in `stack b` are in descending order.
+    - Step 3: Push the number with the lowest cost to `stack b`. Repeat step 2 and 3 until all non-LIS numbers are in `stack b`. Or if the length of LIS is less than 3, repeat step 2 and 3 until there are 3 numbers left in `stack a`.
+    - Step 4: If the length of LIS is less than 3, sort `stack a` using the method above. Otherwise `stack a` should already be sorted.
+    - Step 5: Calculate the cost of putting each numbers in `stack b` into its correct position in `stack a`.
+    - Step 6: Push the number with the lowest cost from `stack b` to `stack a`. Repeat step 5 and 6 until `stack b` is empty.
+    - Step 7: Rotate `stack a` until the smallest number is on the top.
 
 ## Checker
-The checker confirms the result of the sorting. It should display "OK" if `stack a` is correctly sorted and `stack b` is empty, "KO" otherwise.
+The checker confirms the result of the sorting. It displays "OK" if `stack a` is correctly sorted and `stack b` is empty, "KO" otherwise.
 
 # Instructions
 Compile the program by running:
@@ -73,7 +80,7 @@ To use the checker, run the following command:
 
 In case of error (e.g. the input contains other symbols than integers, the input numbers are not unique), the program displays "Error" on the standard error. This can be checked by running:
 
-    ./push_swap $ARG 2 > error.txt
+    ARG="0 one 2 3"; ./push_swap $ARG 2 > error.txt
 
 # Resources
 - [Big-O cheat sheet](https://www.bigocheatsheet.com/)
@@ -82,3 +89,4 @@ In case of error (e.g. the input contains other symbols than integers, the input
 https://github.com/Niimphu/push_swap_visualiser
 - [push_swap manual moves visualizer](https://github.com/stevebalk/push-swap-clicker)
 - [Random number generator](https://numbergenerator.org/randomnumbergenerator/1-100#!numbers=500&low=1&high=500&unique=true&csv=&oddeven=&oddqty=0&sorted=false&addfilters=)
+- [Doxygen style guide](https://micro-os-plus.github.io/develop/doxygen-style-guide/)

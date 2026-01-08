@@ -1,35 +1,20 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/24 11:49:58 by yanlu             #+#    #+#              #
-#    Updated: 2025/12/04 15:55:53 by yanlu            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = push_swap
 
-NAME = libft.a
+# Directories
+SRCDIR = srcs
+INCDIR = includes
 
-# Source files, obj files and header files
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
-	ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
-	ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c \
-	ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
-	ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
-	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-
-BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+# Source files and obj files
+SRC = $(addprefix $(SRCDIR)/, \
+	main.c \
+	main_utils.c \
+	check_args.c \
+	check_arg_utils.c \
+)
 
 OBJ = $(SRC:.c=.o)
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
-
-IDIR = .
-
-HEADER = libft.h
+HEADER = $(addprefix $(INCDIR)/, push_swap.h)
 
 # Compiler and flags
 CC = cc
@@ -41,14 +26,11 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I$(IDIR) -c $< -o $@
-
-bonus: $(OBJ) $(BONUS_OBJ)
-	ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+$(SRCDIR)/%.o: $(SRCDIR)/%.c $(HEADER)
+	$(CC) $(CFLAGS) -I $(INCDIR) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

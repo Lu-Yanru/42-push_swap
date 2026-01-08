@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_utils.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yanlu <yanlu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 18:02:03 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/08 18:03:52 by yanlu            ###   ########.fr       */
+/*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
+/*   Updated: 2026/01/08 15:29:10 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /*
-@brief A function that prints an error message to the standard error,
-frees stack a and b, and exits with code 1.
+1. Process input
+	- check validity
+	- store in stack a
+2. sort stack a
+	- algo
+	- print operations
 */
-void	error_exit(void)
+int	main(int argc, char *argv[])
 {
-	write(1, "Error\n", 6);
-	/*if (stack_a)
-		free_stack(stack_a);
-	if (stack_b)
-		free_stack(stack_b);*/
-	exit (1);
-}
+	/*stack_a;
+	stack_b;*/
 
-void	free_int_arr(int *arr, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(arr[i]);
-		i++;
-	}
+	if (argc < 2)
+		return (0);
+	if (check_args(argc, argv) == 0)
+		error_exit();
+	/*stack_b = NULL;
+	store_data(stack_a, argc, argv);
+	sort(stack_a, stack_b);*/
 }
