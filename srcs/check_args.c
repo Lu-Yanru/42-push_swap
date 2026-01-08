@@ -49,6 +49,7 @@ int	check_unique_and_range(long *arr, int count)
 	int	j;
 
 	i = 0;
+	j = 0;
 	while (i < count)
 	{
 		if (arr[i] > INT_MAX || arr[i] < INT_MIN)
