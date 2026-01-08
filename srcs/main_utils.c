@@ -18,7 +18,7 @@ frees stack a and b, and exits with code 1.
 */
 void	error_exit(void)
 {
-	write(1, "Error\n", 6);
+	ft_putendl_fd("Error", 2);
 	/*if (stack_a)
 		free_stack(stack_a);
 	if (stack_b)

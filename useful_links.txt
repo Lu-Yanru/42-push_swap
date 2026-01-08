@@ -2,7 +2,25 @@ Collection of push_swap resources:
 https://suspectedoceano.notion.site/push_swap-ee2c472005d54d978412bfc37a1ab3e7
 
 Other people's push_swap project
+LIS + Turk:
 https://github.com/Prashant-Bharaj/push_swap
+https://medium.com/@dansylvain84/my-implementation-of-the-42-push-swap-project-2706fd8c2e9f
+https://github.com/sisittu99/push_swap/blob/master/README_EN.md
+Turk:
+https://medium.com/@ayogun/push-swap-c1f5d2d41e97
+https://web.archive.org/web/20220802162832/https://www.codequoi.com/en/push_swap-efficient-positional-sorting-algorithm/#several_possible_methods_for_push_swap
+https://github.com/mcombeau/push_swap/tree/main
+https://github.com/Thuggonaut/42IC_Ring02_Push_swap
+https://www.youtube.com/watch?v=wRvipSG4Mmk
+https://www.youtube.com/watch?v=OaG81sDEpVk&t=2945s
+Chunk/Butterfly:
+https://github.com/dpetrosy/42-Push-Swap/blob/master/README.md
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+https://medium.com/@ridwaneelfilali/push-swap-eff35d3ee0c4
+https://medium.com/@ulysse.gks/push-swap-in-less-than-4200-operations-c292f034f6c0
+https://medium.com/@abdelhadi-salah/push-swap-42-e0abfe0e0fef
+Radix
+https://github.com/hu8813/push_swap
 
 Others
 https://micro-os-plus.github.io/develop/doxygen-style-guide/

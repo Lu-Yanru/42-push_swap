@@ -42,7 +42,7 @@ The following operations can be used:
   - If there are 4 elements: `pb` twice. Calculate the cost (the number of operations it takes) to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
   - If there are 5 elements: `pb` twice. Sort `stack a` using the 3 element method above. Calculate the cost to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
   - If there are more than 5 elements:
-    - Step 1: Find the longest increasing sequence (LIS) in `stack a`.
+    - Step 1: Find the [longest increasing subsequence (LIS)](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) in `stack a`.
     - Step 2: Calculate the cost of putting each non-LIS numbers in `stack a` into its correct position in `stack b`, so that the numbers in `stack b` are in descending order.
     - Step 3: Push the number with the lowest cost to `stack b`. Repeat step 2 and 3 until all non-LIS numbers are in `stack b`. Or if the length of LIS is less than 3, repeat step 2 and 3 until there are 3 numbers left in `stack a`.
     - Step 4: If the length of LIS is less than 3, sort `stack a` using the method above. Otherwise `stack a` should already be sorted.
@@ -85,6 +85,7 @@ In case of error (e.g. the input contains other symbols than integers, the input
 # Resources
 - [Big-O cheat sheet](https://www.bigocheatsheet.com/)
 - [Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
+- [GeeksforGeeks tutorial Longest Increasing Subsequence](https://www.geeksforgeeks.org/dsa/longest-increasing-subsequence-dp-3/)
 - [push_swap visualizer](https://github.com/o-reo/push_swap_visualizer)
 https://github.com/Niimphu/push_swap_visualiser
 - [push_swap manual moves visualizer](https://github.com/stevebalk/push-swap-clicker)

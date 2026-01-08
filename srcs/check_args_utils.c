@@ -58,9 +58,11 @@ int	*store_numbers(char *str, int *arr, int count)
 {
 	int	i;
 	int	j;
+	char	*arr_str;
 
 	i = 0;
 	j = 0;
+	arr_str = ft_split(str, ' ');
 	while (i < count)
 	{
 		arr[i] = str[];
