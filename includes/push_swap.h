@@ -21,13 +21,15 @@
 
 /*Check validity of input*/
 
-int		check_args(int argc, char *argv[]);
-int		is_sign(char c);
+int   check_args(int argc, char *argv[]);
+int   check_unique_and_range(long *arr, int count);
+int   is_sign(char c);
 int		count_numbers(char *str);
-int		*store_numbers(char *str, int *arr, int count);
+long  *store_numbers(char *str, long *arr, int count);
 
 /*Utilities*/
 void	error_exit(void);
-void	free_int_arr(int *arr, int size);
+//void	free_arr_long(long *arr, int size);
+void	free_arr_str(char **arr);
 
 #endif

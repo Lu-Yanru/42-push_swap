@@ -43,10 +43,26 @@ int	check_digits(char *str)
 /*
 @brief A function that checks whether the
 */
-/*int	check_unique_and_range(char *str, int *arr)
+int	check_unique_and_range(long *arr, int count)
 {
+	int	i;
+	int	j;
 
-}*/
+	i = 0;
+	while (i < count)
+	{
+		if (arr[i] > INT_MAX || arr[i] < INT_MIN)
+			return (0);
+		while (j < count)
+		{
+			if (i != j && arr[i] == arr[j])
+					return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 /*
 @brief A function to check the validity of the input arguments.
@@ -65,10 +81,10 @@ are not valid.
 */
 int	check_args(int argc, char *argv[])
 {
-	int		i;
-	char	*str;
-	int		*arr;
-	int		count;
+	int			i;
+	char		*str;
+	long		*arr;
+	int			count;
 
 	i = 1;
 	str = ft_strdup("");
@@ -89,20 +105,25 @@ int	check_args(int argc, char *argv[])
 		i++;
 	}
 	count = count_numbers(str);
-	arr = malloc(count * sizeof(int));
+	arr = malloc(count * sizeof(long));
 	if (!arr)
 	{
 		free(str);
 		return (0);
 	}
 	arr = store_numbers(str, arr, count);
-	if (check_unique_and_range(arr) == 0)
+	if (!arr)
 	{
 		free(str);
-		free_int_arr(arr, count);
+		return (0);
+	}
+	if (check_unique_and_range(arr, count) == 0)
+	{
+		free(str);
+		free(arr);
 		return (0);
 	}
 	free(str);
-	free_int_arr(arr, count);
+	free(arr);
 	return (1);
 }

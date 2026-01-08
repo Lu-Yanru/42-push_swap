@@ -26,7 +26,7 @@ void	error_exit(void)
 	exit (1);
 }
 
-void	free_int_arr(int *arr, int size)
+/*void	free_arr_long(long *arr, int size)
 {
 	int	i;
 
@@ -36,4 +36,18 @@ void	free_int_arr(int *arr, int size)
 		free(arr[i]);
 		i++;
 	}
+	free(arr);
+}*/
+
+void	free_arr_str(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

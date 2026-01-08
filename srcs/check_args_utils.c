@@ -54,19 +54,20 @@ int	count_numbers(char *str)
 @brief A function that stores the numbers in the formatted string into
 an array of integers.
 */
-int	*store_numbers(char *str, int *arr, int count)
+long	*store_numbers(char *str, long *arr, int count)
 {
 	int	i;
-	int	j;
-	char	*arr_str;
+	char	**arr_str;
 
 	i = 0;
-	j = 0;
 	arr_str = ft_split(str, ' ');
-	while (i < count)
+	if (!arr_str)
+		return (NULL);
+	while (arr_str[i])
 	{
-		arr[i] = str[];
+		arr[i] = ft_atoi(arr_str[i]);
 		i++;
 	}
+	free_arr_str(arr_str);
 	return (arr);
 }
