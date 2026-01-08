@@ -1,7 +1,7 @@
 *This project has been created as part of the 42 curriculum by yanlu.*
 
 # Description
-This project implements algorithms to sort data in a stack using a limited set of operations, aiming to achieve the lowest possible number of actions.
+This project implements an algorithm to sort data in a stack using a limited set of operations, aiming to achieve the lowest possible number of actions.
 
 The program receives a `stack a` containing a random number of unique negative and/or positive integers and an empty `stack b`. The goal is to sort the numbers in `stack a` in ascending order using `stack b` to store data temporarily.
 
@@ -32,15 +32,19 @@ The following operations can be used:
 ## Algorithms
 - Check if `stack a` is already sorted. If yes, do nothing.
 - Check how many elements are in `stack a`.
-  - If there are 2 elements: `sa`.
+  - If there are 2 elements: `ra`.
   - If there are 3 elements:
     - `1 3 2` -> `rra sa`
     - `2 1 3` -> `sa`
     - `2 3 1` -> `rra`
     - `3 1 2` -> `ra`
     - `3 2 1` -> `ra sa`
-  - If there are 4 - 5 elements: `pb` twice. Sort `stack a` and `stack b` respectively using the method above. Then rotate `stack a` until the top of `stack b` is at the correct position (between top and bottom of `a`). Then `pa`. Do this until `stack b` is empty.
+  - If there are 4 elements: `pb` twice. Calculate the cost (the number of operations it takes) to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
+  - If there are 5 elements: `pb` twice. Sort `stack a` using the 3 element method above. Calculate the cost to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
   - If there are more than 5 elements:
+
+## Checker
+The checker confirms the result of the sorting. It should display "OK" if `stack a` is correctly sorted and `stack b` is empty, "KO" otherwise.
 
 # Instructions
 Compile the program by running:
@@ -51,6 +55,10 @@ Run the program by supplementing the executable file with a set of integers. Thi
 
     ./push_swap 2 1 3 6 5 8
 
+To test the program with randomly generated numbers, use the `shuf` command. It shuffles a series of positive integers randomly:
+
+    ARG=$(shuf -i 0-1000 -n 500); ./push_swap $ARG
+
 To run the program with numbers from a file instead of inputing the numbers directly from the command line:
 
 
@@ -59,15 +67,18 @@ To calculate how many steps are taken to sort the stack, run:
 
     ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 
-To use the checker the result of the sorting, run the following command. It should display "OK" if `stack a` is correctly sorted and `stack b` is empty, "KO" otherwise.
+To use the checker, run the following command:
 
-    ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
+    ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
 
-In case of error (e.g. the input other symbols than integers, the input numbers are not unique), the program displays "Error" on the standard error. This can be checked by running:
+In case of error (e.g. the input contains other symbols than integers, the input numbers are not unique), the program displays "Error" on the standard error. This can be checked by running:
 
     ./push_swap $ARG 2 > error.txt
 
 # Resources
 - [Big-O cheat sheet](https://www.bigocheatsheet.com/)
+- [Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
 - [push_swap visualizer](https://github.com/o-reo/push_swap_visualizer)
 https://github.com/Niimphu/push_swap_visualiser
+- [push_swap manual moves visualizer](https://github.com/stevebalk/push-swap-clicker)
+- [Random number generator](https://numbergenerator.org/randomnumbergenerator/1-100#!numbers=500&low=1&high=500&unique=true&csv=&oddeven=&oddqty=0&sorted=false&addfilters=)
