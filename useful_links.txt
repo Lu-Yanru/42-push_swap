@@ -1,0 +1,8 @@
+Collection of push_swap resources:
+https://suspectedoceano.notion.site/push_swap-ee2c472005d54d978412bfc37a1ab3e7
+
+Other people's push_swap project
+https://github.com/Prashant-Bharaj/push_swap
+
+Others
+https://micro-os-plus.github.io/develop/doxygen-style-guide/
