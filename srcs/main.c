@@ -29,6 +29,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		return (0);
+	arr = NULL;
 	if (check_args(argc, argv, &arr, &size) == 0)
 		error_exit(arr);
 	int	i = 0;
