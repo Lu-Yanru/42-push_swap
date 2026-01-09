@@ -10,6 +10,7 @@ SRC = $(addprefix $(SRCDIR)/, \
 	main_utils.c \
 	check_args.c \
 	check_arg_utils.c \
+	stack_init.c \
 )
 
 OBJ = $(SRC:.c=.o)
