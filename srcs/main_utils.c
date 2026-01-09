@@ -14,11 +14,13 @@
 
 /*
 @brief A function that prints an error message to the standard error,
-frees stack a and b, and exits with code 1.
+frees the numbers array, stack a and b, and exits with code 1.
 */
-void	error_exit(void)
+void	error_exit(long *arr)
 {
 	ft_putendl_fd("Error", 2);
+	if (arr)
+		free(arr);
 	/*if (stack_a)
 		free_stack(stack_a);
 	if (stack_b)
@@ -26,19 +28,9 @@ void	error_exit(void)
 	exit (1);
 }
 
-/*void	free_arr_long(long *arr, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}*/
-
+/*
+@breif A function that frees an array of strings.
+*/
 void	free_arr_str(char **arr)
 {
 	int	i;

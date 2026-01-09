@@ -17,19 +17,23 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 /*Check validity of input*/
 
-int   check_args(int argc, char *argv[]);
-int   check_unique_and_range(long *arr, int count);
+int   check_args(int argc, char *argv[], long **arr);
+int   check_digits(char *str);
+int   check_unique_n_range(long *arr, int count);
+char	*build_arg_str(int argc, char *argv[]);
+long	*create_number_array(char *str, int *count);
 int   is_sign(char c);
 int		count_numbers(char *str);
 long  *store_numbers(char *str, long *arr, int count);
+long	ft_atol(char *str);
+char	*ft_join_n_free(char *s1, char *s2);
 
 /*Utilities*/
-void	error_exit(void);
-//void	free_arr_long(long *arr, int size);
+void	error_exit(long *arr);
 void	free_arr_str(char **arr);
 
 #endif

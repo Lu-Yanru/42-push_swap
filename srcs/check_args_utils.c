@@ -24,12 +24,6 @@ int	is_sign(char c)
 	return (0);
 }
 
-/*long	ft_atoi(char str)
-{
-	return (0);
-}*/
-
-
 /*
 @brief A function that counts how many numbers there are in the already
 formatted string by counting how many spaces there are and + 1.
@@ -51,12 +45,68 @@ int	count_numbers(char *str)
 }
 
 /*
+@brief A function that converts a string to a long number.
+*/
+long	ft_atol(char *str)
+{
+	long	nbr;
+	int		i;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	nbr = 0;
+	if (is_sign(str[i]) != 0)
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i])
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nbr * sign);
+}
+
+/*
+@brief A function that joins string1 and string2, frees string1,
+and returns the joined string.
+*/
+char	*ft_join_n_free(char *s1, char *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+	{
+		free(s1);
+		return (NULL);
+	}
+	while (s1[j])
+		str[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
+
+/*
 @brief A function that stores the numbers in the formatted string into
 an array of integers.
 */
 long	*store_numbers(char *str, long *arr, int count)
 {
-	int	i;
+	int		i;
 	char	**arr_str;
 
 	i = 0;
@@ -65,7 +115,7 @@ long	*store_numbers(char *str, long *arr, int count)
 		return (NULL);
 	while (arr_str[i])
 	{
-		arr[i] = ft_atoi(arr_str[i]);
+		arr[i] = ft_atol(arr_str[i]);
 		i++;
 	}
 	free_arr_str(arr_str);

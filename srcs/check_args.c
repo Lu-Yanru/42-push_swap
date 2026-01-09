@@ -32,7 +32,7 @@ int	check_digits(char *str)
 		if (str[i] == ' ' && i != 0 && str[i + 1] != ' ' && str[i + 1] != '\0')
 			i++;
 		else
-			break;
+			break ;
 	}
 	if (str[i] == '\0')
 		return (1);
@@ -41,9 +41,10 @@ int	check_digits(char *str)
 }
 
 /*
-@brief A function that checks whether the
+@brief A function that checks whether the each number in an array of long numbers
+are unque and also within the range of an integer.
 */
-int	check_unique_and_range(long *arr, int count)
+int	check_unique_n_range(long *arr, int count)
 {
 	int	i;
 	int	j;
@@ -57,12 +58,58 @@ int	check_unique_and_range(long *arr, int count)
 		while (j < count)
 		{
 			if (i != j && arr[i] == arr[j])
-					return (0);
+				return (0);
 			j++;
 		}
 		i++;
 	}
 	return (1);
+}
+
+/*
+@brief A function that checks if each command line argument only contains
+numbers, and if so, join them into a big string.
+*/
+char	*build_arg_str(int argc, char *argv[])
+{
+	int		i;
+	char	*str;
+
+	i = 1;
+	str = ft_strdup("");
+	if (!str)
+		return (NULL);
+	while (i < argc)
+	{
+		if (check_digits(argv[i]) == 0)
+		{
+			free(str);
+			return (NULL);
+		}
+		if (str[0] != '\0')
+			str = ft_join_n_free(str, " ");
+		str = ft_join_n_free(str, argv[i]);
+		if (!str)
+			return (NULL);
+		i++;
+	}
+	return (str);
+}
+
+/*
+@brief A function that creates an array of long numbers based on a string
+separated by spaces.
+*/
+long	*create_number_array(char *str, int *count)
+{
+	long	*arr;
+
+	*count = count_numbers(str);
+	arr = malloc((*count) * sizeof(long));
+	if (!arr)
+		return (NULL);
+	arr = store_numbers(str, arr, *count);
+	return (arr);
 }
 
 /*
@@ -80,51 +127,25 @@ The following conditions has to be met for the argument to be valid:
 The function also prints "Error\n" to the standard error if the input arguments
 are not valid.
 */
-int	check_args(int argc, char *argv[])
+int	check_args(int argc, char *argv[], long **arr)
 {
-	int			i;
-	char		*str;
-	long		*arr;
-	int			count;
+	char	*str;
+	int		count;
 
-	i = 1;
-	str = ft_strdup("");
+	str = build_arg_str(argc, argv);
 	if (!str)
 		return (0);
-	while (i < argc)
-	{
-		if (check_digits(argv[i]) == 0)
-		{
-			free(str);
-			return (0);
-		}
-		if (str[0] != '\0')
-			str = ft_strjoin(str, " ");
-		str = ft_strjoin(str, argv[i]);
-		if (!str)
-			return (0);
-		i++;
-	}
-	count = count_numbers(str);
-	arr = malloc(count * sizeof(long));
-	if (!arr)
+	*arr = create_number_array(str, &count);
+	if (!(*arr))
 	{
 		free(str);
 		return (0);
 	}
-	arr = store_numbers(str, arr, count);
-	if (!arr)
+	if (check_unique_n_range(*arr, count) == 0)
 	{
 		free(str);
-		return (0);
-	}
-	if (check_unique_and_range(arr, count) == 0)
-	{
-		free(str);
-		free(arr);
 		return (0);
 	}
 	free(str);
-	free(arr);
 	return (1);
 }
