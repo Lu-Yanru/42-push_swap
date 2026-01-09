@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/09 19:29:19 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/09 19:35:53 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	stack_init(t_node **stack_a, long *arr, int size);
 t_node	*new_node(int value);
 void	add_top(t_node **stack, t_node *new);
 t_node	*last_node(t_node *stack);
-t_node	*add_bottom(t_node **stack, t_node *new);
+void	add_bottom(t_node **stack, t_node *new);
 
 /* Utilities */
 void	error_exit(long *arr);

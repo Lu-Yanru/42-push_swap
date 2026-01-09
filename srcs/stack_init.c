@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:58:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/09 19:29:34 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/09 19:35:43 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_node	*last_node(t_node *stack)
 /*
 @brief A function that add a new node to the bottom of the stack.
 */
-t_node	*add_bottom(t_node **stack, t_node *new)
+void	add_bottom(t_node **stack, t_node *new)
 {
 	t_node	*last;
 
