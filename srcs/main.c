@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yanlu <yanlu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/08 15:29:10 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/09 17:51:22 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,17 @@ int	main(int argc, char *argv[])
 {
 	long	*arr;
 	int		size;
-	/*stack_a;
-	stack_b;*/
+	//t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (argc < 2)
 		return (0);
 	arr = NULL;
 	if (check_args(argc, argv, &arr, &size) == 0)
 		error_exit(arr);
-	int	i = 0;
-	printf("%d\n", size);
-	while (i < 6)
-	{
-		printf("%ld\n", arr[i++]);
-	}
 	free(arr);
-	/*stack_b = NULL;
-	store_data(stack_a, arr, size);
-	sort(stack_a, stack_b);*/
+	stack_b = NULL;
+	//store_data(stack_a, arr, size);
+	free(arr);
+	/*sort(stack_a, stack_b);*/
 }
