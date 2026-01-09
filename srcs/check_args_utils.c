@@ -71,8 +71,8 @@ long	ft_atol(char *str)
 }
 
 /*
-@brief A function that joins string1 and string2, frees string1,
-and returns the joined string.
+@brief A function that joins string1 and string2, frees string1 and returns
+the joined string.
 */
 char	*ft_join_n_free(char *s1, char *s2)
 {
@@ -106,7 +106,7 @@ an array of integers.
 */
 long	*store_numbers(char *str, long *arr, int count)
 {
-	int		i;
+	int	i;
 	char	**arr_str;
 
 	i = 0;

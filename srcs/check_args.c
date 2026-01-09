@@ -50,9 +50,9 @@ int	check_unique_n_range(long *arr, int count)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < count)
 	{
+		j = 0;
 		if (arr[i] > INT_MAX || arr[i] < INT_MIN)
 			return (0);
 		while (j < count)
@@ -98,7 +98,11 @@ char	*build_arg_str(int argc, char *argv[])
 
 /*
 @brief A function that creates an array of long numbers based on a string
+separated by spaces. It also calculates the size of the array.
+@param[in] str A formatted string containing the numbers to be converted
 separated by spaces.
+@param[in] count A pointer to the size of the array.
+@return The array of long numbers.
 */
 long	*create_number_array(char *str, int *count)
 {
@@ -124,24 +128,23 @@ The following conditions has to be met for the argument to be valid:
 - The input numbers has to be unique.
 - The input numbers need to be within the range of an integer.
 
-The function also prints "Error\n" to the standard error if the input arguments
-are not valid.
+If valid, the function also converts in command line input into an array of long
+numbers and calculates its size (how many numbers).
 */
-int	check_args(int argc, char *argv[], long **arr)
+int	check_args(int argc, char *argv[], long **arr, int *size)
 {
 	char	*str;
-	int		count;
 
 	str = build_arg_str(argc, argv);
 	if (!str)
 		return (0);
-	*arr = create_number_array(str, &count);
+	*arr = create_number_array(str, size);
 	if (!(*arr))
 	{
 		free(str);
 		return (0);
 	}
-	if (check_unique_n_range(*arr, count) == 0)
+	if (check_unique_n_range(*arr, *size) == 0)
 	{
 		free(str);
 		return (0);

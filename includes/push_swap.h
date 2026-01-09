@@ -21,7 +21,7 @@
 
 /*Check validity of input*/
 
-int   check_args(int argc, char *argv[], long **arr);
+int   check_args(int argc, char *argv[], long **arr, int *size);
 int   check_digits(char *str);
 int   check_unique_n_range(long *arr, int count);
 char	*build_arg_str(int argc, char *argv[]);

@@ -23,19 +23,22 @@
 int	main(int argc, char *argv[])
 {
 	long	*arr;
+	int		size;
 	/*stack_a;
 	stack_b;*/
 
 	if (argc < 2)
 		return (0);
-	if (check_args(argc, argv, &arr) == 0)
+	if (check_args(argc, argv, &arr, &size) == 0)
 		error_exit(arr);
 	int	i = 0;
+	printf("%d\n", size);
 	while (i < 6)
 	{
 		printf("%ld\n", arr[i++]);
 	}
+	free(arr);
 	/*stack_b = NULL;
-	store_data(stack_a, arr);
+	store_data(stack_a, arr, size);
 	sort(stack_a, stack_b);*/
 }
