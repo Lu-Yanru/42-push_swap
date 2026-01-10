@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:58:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/09 19:35:43 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/10 11:38:29 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	add_bottom(t_node **stack, t_node *new)
 	t_node	*last;
 
 	if (!stack || !new)
-		return (NULL);
+		return ;
 	if (!(*stack))
 		*stack = new;
 	else

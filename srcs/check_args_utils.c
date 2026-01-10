@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yanlu <yanlu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:20:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/08 18:28:41 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/10 11:39:27 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ char	*ft_join_n_free(char *s1, char *s2)
 @brief A function that stores the numbers in the formatted string into
 an array of integers.
 */
-long	*store_numbers(char *str, long *arr, int count)
+long	*store_numbers(char *str, long *arr)
 {
-	int	i;
+	int		i;
 	char	**arr_str;
 
 	i = 0;

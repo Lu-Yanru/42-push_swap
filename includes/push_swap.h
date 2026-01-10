@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/09 19:35:53 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/10 11:48:21 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <stdlib.h>
 
 # include "../libft/libft.h"
+
+/*#define malloc(x) test_malloc(x)
+
+void	set_malloc_fail_at(int n);
+void	*test_malloc(size_t size);*/
 
 typedef	struct s_node
 {
@@ -39,7 +44,7 @@ char	*build_arg_str(int argc, char *argv[]);
 long	*create_number_array(char *str, int *count);
 int		is_sign(char c);
 int		count_numbers(char *str);
-long	*store_numbers(char *str, long *arr, int count);
+long	*store_numbers(char *str, long *arr);
 long	ft_atol(char *str);
 char	*ft_join_n_free(char *s1, char *s2);
 
@@ -50,8 +55,12 @@ void	add_top(t_node **stack, t_node *new);
 t_node	*last_node(t_node *stack);
 void	add_bottom(t_node **stack, t_node *new);
 
+/* Stack utilities */
+void	free_node(t_node *node);
+void	free_stack(t_node **stack);
+
 /* Utilities */
-void	error_exit(long *arr);
+void	error_exit(long *arr, t_node **stack_a, t_node **stack_b);
 void	free_arr_str(char **arr);
 
 #endif

@@ -6,12 +6,30 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/09 19:31:11 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/10 11:53:17 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 #include <stdio.h>
+
+static int	g_fail_at = -1;
+static int	g_malloc_count = 0;
+
+void	set_malloc_fail_at(int n)
+{
+	g_fail_at = n;
+	g_malloc_count = 0;
+}
+
+void	*test_malloc(size_t size)
+{
+	if (g_fail_at >= 0 && g_malloc_count++ == g_fail_at)
+		return (NULL);
+	return (malloc(size));
+}
+
 /*
 1. Process input
 	- check validity
@@ -30,14 +48,14 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	arr = NULL;
-	if (check_args(argc, argv, &arr, &size) == 0)
-		error_exit(arr);
 	stack_a = NULL;
 	stack_b = NULL;
+	//set_malloc_fail_at(100);
+	if (check_args(argc, argv, &arr, &size) == 0)
+		error_exit(arr, &stack_a, &stack_b);
 	stack_init(&stack_a, arr, size);
 	free(arr);
-	/*sort(stack_a, stack_b);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	*/
+	/*sort(stack_a, stack_b, size);*/
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yanlu <yanlu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:23:14 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/08 18:27:01 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/10 11:40:06 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ long	*create_number_array(char *str, int *count)
 	arr = malloc((*count) * sizeof(long));
 	if (!arr)
 		return (NULL);
-	arr = store_numbers(str, arr, *count);
+	arr = store_numbers(str, arr);
 	return (arr);
 }
 
