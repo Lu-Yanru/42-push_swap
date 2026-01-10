@@ -72,7 +72,7 @@ To test the program with randomly generated numbers, use the `shuf` command. It 
 
 To run the program with numbers from a file instead of inputing the numbers directly from the command line:
 
-
+	./push_swap $(< test.txt)
 
 To calculate how many steps are taken to sort the stack, run:
 
@@ -92,6 +92,6 @@ In case of error (e.g. the input contains other symbols than integers, the input
 - [GeeksforGeeks tutorial Longest Increasing Subsequence](https://www.geeksforgeeks.org/dsa/longest-increasing-subsequence-dp-3/)
 - [push_swap visualizer](https://github.com/o-reo/push_swap_visualizer)
 https://github.com/Niimphu/push_swap_visualiser
-- [push_swap manual moves visualizer](https://github.com/stevebalk/push-swap-clicker)
+- [push_swap manual moves visualizer](https://phemsi-a.itch.io/push-swap)
 - [Random number generator](https://numbergenerator.org/randomnumbergenerator/1-100#!numbers=500&low=1&high=500&unique=true&csv=&oddeven=&oddqty=0&sorted=false&addfilters=)
 - [Doxygen style guide](https://micro-os-plus.github.io/develop/doxygen-style-guide/)

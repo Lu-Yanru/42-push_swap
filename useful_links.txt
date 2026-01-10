@@ -22,5 +22,10 @@ https://medium.com/@abdelhadi-salah/push-swap-42-e0abfe0e0fef
 Radix
 https://github.com/hu8813/push_swap
 
+Testers
+https://github.com/Vinni-Cedraz/push_swap_averager
+https://github.com/gemartin99/Push-Swap-Tester
+https://github.com/ael-bekk/push_swap_tester
+
 Others
 https://micro-os-plus.github.io/develop/doxygen-style-guide/

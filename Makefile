@@ -11,6 +11,11 @@ SRC = $(addprefix $(SRCDIR)/, \
 	check_args.c \
 	check_arg_utils.c \
 	stack_init.c \
+	stack_utils.c \
+	op_swap.c \
+	op_rotate.c \
+	op_rev_rotate.c \
+	op_push.c \
 )
 
 OBJ = $(SRC:.c=.o)
