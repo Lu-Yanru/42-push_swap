@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:48:29 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 09:44:31 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 # include "../libft/libft.h"
 
-/*#define malloc(x) test_malloc(x)
+//#define malloc(x) test_malloc(x)
 
 void	set_malloc_fail_at(int n);
-void	*test_malloc(size_t size);*/
+void	*test_malloc(size_t size);
 
 typedef	struct s_node
 {
@@ -74,6 +74,14 @@ void	rrr(t_node **stack_a, t_node **stack_b);
 void	push(t_node **dst, t_node **src);
 void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_b, t_node **stack_a);
+
+/* Sort main */
+void	sort(t_node **stack_a, t_node **stack_b, int size);
+int		check_sorted(t_node *stack);
+void	sort_three(t_node **stack);
+void	sort_big(t_node **stack_a, t_node **stack_b);
+
+/* Sort LIS */
 
 /* General utilities */
 void	error_exit(long *arr, t_node **stack_a, t_node **stack_b);

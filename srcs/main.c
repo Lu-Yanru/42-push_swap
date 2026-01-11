@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:51:20 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 09:23:43 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,12 @@ int	main(int argc, char *argv[])
 	arr = NULL;
 	stack_a = NULL;
 	stack_b = NULL;
-	//set_malloc_fail_at(100);
 	if (check_args(argc, argv, &arr, &size) == 0)
 		error_exit(arr, &stack_a, &stack_b);
+	//set_malloc_fail_at(1);
 	stack_init(&stack_a, arr, size);
 	free(arr);
-	//ra(&stack_a);
-	//rra(&stack_a);
-	pb(&stack_b, &stack_a);
-	pb(&stack_b, &stack_a);
-	pb(&stack_b, &stack_a);
+	sort(&stack_a, &stack_b, size);
 	t_node	*tmp;
 	tmp = stack_a;
 	while (tmp)
@@ -74,7 +70,6 @@ int	main(int argc, char *argv[])
 		printf("%i\n", tmp->value);
 		tmp = tmp->next;
 	}
-	/*sort(stack_a, stack_b, size);*/
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 }

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 11:26:58 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 11:32:23 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 08:35:07 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_node(t_node *node)
 void	free_stack(t_node **stack)
 {
 	t_node	*tmp;
-	
+
 	if (!stack)
 		return ;
 	tmp = *stack;

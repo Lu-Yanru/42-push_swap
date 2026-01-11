@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:58:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:32:51 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 08:47:31 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	stack_init(t_node **stack_a, long *arr, int size)
 	while (i < size)
 	{
 		new = new_node((int) arr[i]);
+		if (!new)
+			error_exit(arr, stack_a, NULL);
 		add_bottom(stack_a, new);
 		i++;
 	}
