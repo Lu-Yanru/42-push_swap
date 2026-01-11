@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:40:33 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 18:54:32 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	set_malloc_fail_at(int n);
 void	*test_malloc(size_t size);
 
-typedef	struct s_node
+typedef struct s_node
 {
 	int				value;
 	int				index;

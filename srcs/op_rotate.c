@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:42:03 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:00:12 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 18:53:14 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rotate(t_node **stack)
 	t_node	*last;
 	t_node	*tmp;
 
-	if(!(*stack) || !((*stack)->next))
+	if (!(*stack) || !((*stack)->next))
 		return ;
 	last = last_node(*stack);
 	tmp = (*stack)->next;
