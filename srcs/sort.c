@@ -6,11 +6,13 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 09:48:46 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 18:38:01 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+#include <stdio.h>
 
 /*
 @brief A function that checks whether a stack is sorted or not.
@@ -65,12 +67,27 @@ void	sort_three(t_node **stack)
 with the help of stack b. It uses the algorithm described in
 README.md.
 */
-void	sort_big(t_node **stack_a, t_node **stack_b)
+void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
-	find_lis(stack_a);
+	int	lis_size;
+
+	find_lis(stack_a, &lis_size, size);
+	/*
 	push_non_lis(stack_a, stack_b);
+	if (lis_size <= 3)
+		sort_three(stack_a);
 	push_back(stack_a, stack_b);
-	rotate_to_ascend(stack_a);
+	rotate_to_ascend(stack_a);*/
+	*stack_b = NULL;
+	t_node	*tmp;
+	tmp = *stack_a;
+	while (tmp)
+	{
+		if (tmp->lis != 0)
+			printf("%i\n", tmp->value);
+		tmp = tmp->next;
+	}
+	printf("size: %i\n", lis_size);
 }
 
 /*
@@ -90,5 +107,5 @@ void	sort(t_node **stack_a, t_node **stack_b, int size)
 	else if (size == 3)
 		sort_three(stack_a);
 	else
-		sort_big(stack_a, stack_b);
+		sort_big(stack_a, stack_b, size);
 }

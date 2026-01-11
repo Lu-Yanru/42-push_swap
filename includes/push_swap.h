@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 09:44:31 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 18:40:33 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # include "../libft/libft.h"
 
@@ -30,6 +30,7 @@ typedef	struct s_node
 	int				index;
 	int				cost;
 	int				lis;
+	struct s_node	*lis_prev;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
@@ -79,9 +80,13 @@ void	pb(t_node **stack_b, t_node **stack_a);
 void	sort(t_node **stack_a, t_node **stack_b, int size);
 int		check_sorted(t_node *stack);
 void	sort_three(t_node **stack);
-void	sort_big(t_node **stack_a, t_node **stack_b);
+void	sort_big(t_node **stack_a, t_node **stack_b, int size);
 
 /* Sort LIS */
+void	find_lis(t_node **stack, int *lis_size, int stack_size);
+int		init_tail_arrs(int **tail_val, t_node ***tail, int stack_size);
+int		binary_search_lis(int *tail_val, int left, int right, int value);
+void	mark_lis(t_node **tail, int lis_size);
 
 /* General utilities */
 void	error_exit(long *arr, t_node **stack_a, t_node **stack_b);

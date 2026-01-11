@@ -17,6 +17,7 @@ SRC = $(addprefix $(SRCDIR)/, \
 	op_rev_rotate.c \
 	op_push.c \
 	sort.c \
+	sort_lis.c \
 )
 
 OBJ = $(SRC:.c=.o)

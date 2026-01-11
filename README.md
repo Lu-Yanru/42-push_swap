@@ -86,10 +86,14 @@ In case of error (e.g. the input contains other symbols than integers, the input
 
     ARG="0 one 2 3"; ./push_swap $ARG 2 > error.txt
 
+To see the exit code:
+
+	echo $?
+
 # Resources
 - [Big-O cheat sheet](https://www.bigocheatsheet.com/)
 - [Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
-- [GeeksforGeeks tutorial Longest Increasing Subsequence](https://www.geeksforgeeks.org/dsa/longest-increasing-subsequence-dp-3/)
+- [Algorithms for Competitive Programming tutorial Longest Increasing Subsequence](https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html)
 - [push_swap visualizer](https://github.com/o-reo/push_swap_visualizer)
 https://github.com/Niimphu/push_swap_visualiser
 - [push_swap manual moves visualizer](https://phemsi-a.itch.io/push-swap)
