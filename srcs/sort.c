@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:38:01 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/11 18:56:59 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	find_lis(stack_a, &lis_size, size);
 	/*
 	push_non_lis(stack_a, stack_b);
-	if (lis_size <= 3)
+	if (lis_size < 3)
 		sort_three(stack_a);
 	push_back(stack_a, stack_b);
 	rotate_to_ascend(stack_a);*/
