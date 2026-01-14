@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:54:32 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:39:52 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,22 @@ typedef struct s_node
 {
 	int				value;
 	int				index;
-	int				cost;
 	int				lis;
 	struct s_node	*lis_prev;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
+
+typedef struct s_move
+{
+	int	size_a;
+	int	size_b;
+	int	index;
+	int	target_index;
+	int	cost_a;
+	int	cost_b;
+	int	cost_all;
+}	t_move;
 
 /* Check validity of input */
 
@@ -61,20 +71,20 @@ void	free_stack(t_node **stack);
 
 /* Operations */
 void	swap(t_node **stack);
-void	sa(t_node **stack_a);
-void	sb(t_node **stack_b);
-void	ss(t_node **stack_a, t_node **stack_b);
+void	sa(t_node **stack_a, int n);
+void	sb(t_node **stack_b, int n);
+void	ss(t_node **stack_a, t_node **stack_b, int n);
 void	rotate(t_node **stack);
-void	ra(t_node **stack_a);
-void	rb(t_node **stack_b);
-void	rr(t_node **stack_a, t_node **stack_b);
+void	ra(t_node **stack_a, int n);
+void	rb(t_node **stack_b, int n);
+void	rr(t_node **stack_a, t_node **stack_b, int n);
 void	rev_rotate(t_node **stack);
-void	rra(t_node **stack_a);
-void	rrb(t_node **stack_b);
-void	rrr(t_node **stack_a, t_node **stack_b);
+void	rra(t_node **stack_a, int n);
+void	rrb(t_node **stack_b, int n);
+void	rrr(t_node **stack_a, t_node **stack_b, int n);
 void	push(t_node **dst, t_node **src);
-void	pa(t_node **stack_a, t_node **stack_b);
-void	pb(t_node **stack_b, t_node **stack_a);
+void	pa(t_node **stack_a, t_node **stack_b, int n);
+void	pb(t_node **stack_b, t_node **stack_a, int n);
 
 /* Sort main */
 void	sort(t_node **stack_a, t_node **stack_b, int size);

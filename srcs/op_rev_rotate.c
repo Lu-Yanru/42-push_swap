@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 13:05:31 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:19:00 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:35:43 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,42 @@ void	rev_rotate(t_node **stack)
 	*stack = last;
 }
 
-void	rra(t_node **stack_a)
+void	rra(t_node **stack_a, int n)
 {
-	rev_rotate(stack_a);
-	ft_putendl_fd("rra", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rev_rotate(stack_a);
+		ft_putendl_fd("rra", 1);
+		i++;
+	}
 }
 
-void	rrb(t_node **stack_b)
+void	rrb(t_node **stack_b, int n)
 {
-	rev_rotate(stack_b);
-	ft_putendl_fd("rrb", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rev_rotate(stack_b);
+		ft_putendl_fd("rrb", 1);
+		i++;
+	}
 }
 
-void	rrr(t_node **stack_a, t_node **stack_b)
+void	rrr(t_node **stack_a, t_node **stack_b, int n)
 {
-	rev_rotate(stack_a);
-	rev_rotate(stack_b);
-	ft_putendl_fd("rrr", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rev_rotate(stack_a);
+		rev_rotate(stack_b);
+		ft_putendl_fd("rrr", 1);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 11:54:23 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 12:40:47 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:31:47 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,42 @@ void	swap(t_node **stack)
 	*stack = tmp;
 }
 
-void	sa(t_node **stack_a)
+void	sa(t_node **stack_a, int n)
 {
-	swap(stack_a);
-	ft_putendl_fd("sa", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		swap(stack_a);
+		ft_putendl_fd("sa", 1);
+		i++;
+	}
 }
 
-void	sb(t_node **stack_b)
+void	sb(t_node **stack_b, int n)
 {
-	swap(stack_b);
-	ft_putendl_fd("sb", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		swap(stack_b);
+		ft_putendl_fd("sb", 1);
+		i++;
+	}
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	ss(t_node **stack_a, t_node **stack_b, int n)
 {
-	swap(stack_a);
-	swap(stack_b);
-	ft_putendl_fd("ss", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		swap(stack_a);
+		swap(stack_b);
+		ft_putendl_fd("ss", 1);
+		i++;
+	}
 }

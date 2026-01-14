@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 13:21:00 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 13:47:46 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:36:55 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,28 @@ void	push(t_node **dst, t_node **src)
 		add_top(dst, tmp);
 }
 
-void	pa(t_node **stack_a, t_node **stack_b)
+void	pa(t_node **stack_a, t_node **stack_b, int n)
 {
-	push(stack_a, stack_b);
-	ft_putendl_fd("pa", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		push(stack_a, stack_b);
+		ft_putendl_fd("pa", 1);
+		i++;
+	}
 }
 
-void	pb(t_node **stack_b, t_node **stack_a)
+void	pb(t_node **stack_b, t_node **stack_a, int n)
 {
-	push(stack_b, stack_a);
-	ft_putendl_fd("pb", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		push(stack_b, stack_a);
+		ft_putendl_fd("pb", 1);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 17:58:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 17:05:15 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:42:23 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_node	*new_node(int value)
 		return (NULL);
 	node->value = value;
 	node->index = 0;
-	node->cost = 0;
 	node->lis = 0;
 	node->lis_prev = NULL;
 	node->prev = NULL;

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:42:03 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:53:14 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:33:56 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,42 @@ void	rotate(t_node **stack)
 	*stack = tmp;
 }
 
-void	ra(t_node **stack_a)
+void	ra(t_node **stack_a, int n)
 {
-	rotate(stack_a);
-	ft_putendl_fd("ra", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rotate(stack_a);
+		ft_putendl_fd("ra", 1);
+		i++;
+	}
 }
 
-void	rb(t_node **stack_b)
+void	rb(t_node **stack_b, int n)
 {
-	rotate(stack_b);
-	ft_putendl_fd("rb", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rotate(stack_b);
+		ft_putendl_fd("rb", 1);
+		i++;
+	}
 }
 
-void	rr(t_node **stack_a, t_node **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b, int n)
 {
-	rotate(stack_a);
-	rotate(stack_b);
-	ft_putendl_fd("rr", 1);
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+		ft_putendl_fd("rr", 1);
+		i++;
+	}
 }

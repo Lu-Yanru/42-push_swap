@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:56:59 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 12:49:39 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ void	sort_three(t_node **stack)
 	third = (*stack)->next->next->value;
 	if (first < third && third < second)
 	{
-		rra(stack);
-		sa(stack);
+		rra(stack, 1);
+		sa(stack, 1);
 	}
 	else if (second < first && first < third)
-		sa(stack);
+		sa(stack, 1);
 	else if (third < first && first < second)
-		rra(stack);
+		rra(stack, 1);
 	else if (second < third && third < first)
-		ra(stack);
+		ra(stack, 1);
 	else if (third < second && second < first)
 	{
-		ra(stack);
-		sa(stack);
+		ra(stack, 1);
+		sa(stack, 1);
 	}
 }
 
@@ -69,14 +69,16 @@ README.md.
 */
 void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
-	int	lis_size;
+	int		*lis_size;
+	t_move	move;
 
 	find_lis(stack_a, &lis_size, size);
+	move.size_a = size;
 	/*
-	push_non_lis(stack_a, stack_b);
+	push_to_b(stack_a, stack_b, &move);
 	if (lis_size < 3)
 		sort_three(stack_a);
-	push_back(stack_a, stack_b);
+	push_to_a(stack_a, stack_b, &move);
 	rotate_to_ascend(stack_a);*/
 	*stack_b = NULL;
 	t_node	*tmp;
@@ -103,7 +105,7 @@ void	sort(t_node **stack_a, t_node **stack_b, int size)
 	if (size <= 1 || check_sorted(*stack_a) != 0)
 		return ;
 	if (size == 2)
-		ra(stack_a);
+		ra(stack_a, 1);
 	else if (size == 3)
 		sort_three(stack_a);
 	else
