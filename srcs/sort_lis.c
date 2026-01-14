@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 18:46:17 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 14:29:01 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 */
 int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 {
+	int	i;
+
 	*tail_val = malloc(stack_size * sizeof(int));
 	if (!tail_val)
 		return (0);
@@ -26,6 +28,13 @@ int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 	{
 		free(tail_val);
 		return (0);
+	}
+	i = 0;
+	while (i < stack_size)
+	{
+		(*tail)[i] = NULL;
+		(*tail_val)[i] = INT_MAX;
+		i++;
 	}
 	return (1);
 }
@@ -118,6 +127,8 @@ a longer increasing sequence (extend the tail).
 If tail_len is 1, this is the start of a new increasing subsequence,
 tmp->lis_prev remains the initial value NULL.
 Otherwise, set the previous LIS node of tmp to the tail[tail_len - 1].
+- Time complexity: O(n log(n))
+- Space complexity: O(n)
 
 Finally, mark the nodes belonging to LIS in the stack by looping from the tail.
 If the size of LIS is smaller than 3, mark more nodes as LIS

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 18:02:03 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 11:50:58 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 15:10:13 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,14 @@ void	free_arr_str(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+/*
+@brief A function that calculate the absolute value of a number.
+*/
+int	ft_abs(int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
 }

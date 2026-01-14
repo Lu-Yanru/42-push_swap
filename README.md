@@ -39,9 +39,7 @@ The following operations can be used:
     - `2 3 1` -> `rra`
     - `3 1 2` -> `ra`
     - `3 2 1` -> `ra sa`
-  - If there are 4 elements: `pb` twice. Calculate the cost (the number of operations it takes) to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
-  - If there are 5 elements: `pb` twice. Sort `stack a` using the 3 element method above. Calculate the cost to put each element in `stack b` in the correct position in `stack a`. Then `pa` in order of descending cost. Do this until `stack b` is empty.
-  - If there are more than 5 elements:
+  - If there are more than 3 elements:
     - Step 1: Find the [longest increasing subsequence (LIS)](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) in `stack a`.
     - Step 2: Calculate the cost of putting each non-LIS numbers in `stack a` into its correct position in `stack b`, so that the numbers in `stack b` are in descending order.
     - Step 3: Push the number with the lowest cost to `stack b`. Repeat step 2 and 3 until all non-LIS numbers are in `stack b`. Or if the length of LIS is less than 3, repeat step 2 and 3 until there are 3 numbers left in `stack a`.

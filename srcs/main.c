@@ -6,13 +6,11 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/11 11:01:12 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 18:45:50 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-#include <stdio.h>
 
 static int	g_fail_at = -1;
 static int	g_malloc_count = 0;

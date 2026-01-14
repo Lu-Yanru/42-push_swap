@@ -6,13 +6,11 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 12:49:39 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 18:45:42 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-#include <stdio.h>
 
 /*
 @brief A function that checks whether a stack is sorted or not.
@@ -69,27 +67,40 @@ README.md.
 */
 void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
-	int		*lis_size;
+	int		lis_size;
 	t_move	move;
 
-	find_lis(stack_a, &lis_size, size);
 	move.size_a = size;
-	/*
-	push_to_b(stack_a, stack_b, &move);
-	if (lis_size < 3)
-		sort_three(stack_a);
-	push_to_a(stack_a, stack_b, &move);
-	rotate_to_ascend(stack_a);*/
-	*stack_b = NULL;
+	move.size_b = 0;
+	find_lis(stack_a, &lis_size, size);
 	t_node	*tmp;
 	tmp = *stack_a;
+	printf("lis\n");
 	while (tmp)
 	{
 		if (tmp->lis != 0)
 			printf("%i\n", tmp->value);
 		tmp = tmp->next;
 	}
-	printf("size: %i\n", lis_size);
+	push_to_b(stack_a, stack_b, &move);
+	if (lis_size < 3)
+		sort_three(stack_a);
+	/*push_to_a(stack_b, stack_a, &move);
+	rotate_to_ascend(stack_a);*/
+	tmp = *stack_a;
+	printf("stacka\n");
+	while (tmp)
+	{
+		printf("%i\n", tmp->value);
+		tmp = tmp->next;
+	}
+	printf("stackb\n");
+	tmp = *stack_b;
+	while (tmp)
+	{
+		printf("%i\n", tmp->value);
+		tmp = tmp->next;
+	}
 }
 
 /*

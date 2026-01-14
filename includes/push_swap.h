@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 12:39:52 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/14 18:41:53 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../libft/libft.h"
 
 //#define malloc(x) test_malloc(x)
+#include <stdio.h>
 
 void	set_malloc_fail_at(int n);
 void	*test_malloc(size_t size);
@@ -43,6 +44,7 @@ typedef struct s_move
 	int	cost_a;
 	int	cost_b;
 	int	cost_all;
+	int	cost_shared;
 }	t_move;
 
 /* Check validity of input */
@@ -91,6 +93,8 @@ void	sort(t_node **stack_a, t_node **stack_b, int size);
 int		check_sorted(t_node *stack);
 void	sort_three(t_node **stack);
 void	sort_big(t_node **stack_a, t_node **stack_b, int size);
+void	push_to_b(t_node **stack_a, t_node **stack_b, t_move *move);
+void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction);
 
 /* Sort LIS */
 void	find_lis(t_node **stack, int *lis_size, int stack_size);
@@ -98,8 +102,17 @@ int		init_tail_arrs(int **tail_val, t_node ***tail, int stack_size);
 int		binary_search_lis(int *tail_val, int left, int right, int value);
 void	mark_lis(t_node **tail, int lis_size);
 
+/* Sort cost */
+void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int direction);
+void	assign_index(t_node **stack);
+int		find_target_ascend(t_node *stack, int value);
+int		find_target_descend(t_node *stack, int value);
+int		get_smallest_index(t_node *stack);
+int		get_biggest_index(t_node *stack);
+
 /* General utilities */
 void	error_exit(long *arr, t_node **stack_a, t_node **stack_b);
 void	free_arr_str(char **arr);
+int		ft_abs(int nbr);
 
 #endif
