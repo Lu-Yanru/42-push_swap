@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:58:58 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 19:17:52 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	rotate_to_ascend(t_node **stack, int size)
 	int	min_ind;
 
 	min_ind = get_smallest_index(*stack);
-	if (min_ind < size / 2)
+	if (min_ind <= size / 2)
 		ra(stack, min_ind);
 	else
 		rra(stack, size - min_ind);

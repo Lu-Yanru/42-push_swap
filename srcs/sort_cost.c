@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:28:12 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:22:38 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 19:17:23 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	calc_cost_one_node(int index, int size)
 
 	if (size <= 1)
 		return (0);
-	if (index < (size / 2))
+	if (index <= (size / 2))
 		cost = index;
 	else
 		cost = -(size - index);
