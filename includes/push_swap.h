@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:37:09 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:58:08 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 
 # include "../libft/libft.h"
+
+#include <stdio.h>
 
 typedef struct s_node
 {
@@ -58,6 +60,7 @@ void	add_bottom(t_node **stack, t_node *new);
 /* Stack utilities */
 void	free_node(t_node *node);
 void	free_stack(t_node **stack);
+void	assign_index(t_node **stack);
 
 /* Operations */
 void	sa(t_node **stack_a, int n);

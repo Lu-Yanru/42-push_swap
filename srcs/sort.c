@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:31:51 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:58:58 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	move.size_a = move.size_b;
 	move.size_b = tmp;
 	push_opt(stack_b, stack_a, &move, 1);
+	assign_index(stack_a);
 	rotate_to_ascend(stack_a, size);
 }
 

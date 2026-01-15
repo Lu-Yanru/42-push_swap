@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:12:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:37:17 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 19:06:11 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ int	main(int argc, char *argv[])
 	stack_init(&stack_a, arr, size);
 	free(arr);
 	sort(&stack_a, &stack_b, size);
+	/*t_node	*tmp;
+	tmp = stack_a;
+	printf("stacka\n");
+	while (tmp)
+	{
+		printf("%i\n", tmp->value);
+		tmp = tmp->next;
+	}
+	tmp = stack_b;
+	printf("stackb\n");
+	while (tmp)
+	{
+		printf("%i\n", tmp->value);
+		tmp = tmp->next;
+	}*/
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 }

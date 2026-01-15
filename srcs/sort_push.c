@@ -6,31 +6,11 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:35:38 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:57:43 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-/*
-@brief A function that marks the index of each element in a stack.
-*/
-static void	assign_index(t_node **stack)
-{
-	t_node	*tmp;
-	int		i;
-
-	if (!(*stack))
-		return ;
-	tmp = *stack;
-	i = 0;
-	while (tmp)
-	{
-		tmp->index = i;
-		tmp = tmp->next;
-		i++;
-	}
-}
 
 static void	do_push(t_node **stack_src, t_node **stack_dst, int dir)
 {

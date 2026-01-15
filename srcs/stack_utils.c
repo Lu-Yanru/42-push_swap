@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 11:26:58 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 15:04:06 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:57:52 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,24 @@ void	free_stack(t_node **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
+}
+
+/*
+@brief A function that marks the index of each element in a stack.
+*/
+void	assign_index(t_node **stack)
+{
+	t_node	*tmp;
+	int		i;
+
+	if (!(*stack))
+		return ;
+	tmp = *stack;
+	i = 0;
+	while (tmp)
+	{
+		tmp->index = i;
+		tmp = tmp->next;
+		i++;
+	}
 }
