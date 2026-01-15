@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:19:25 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:26:02 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,32 @@ static void	do_push(t_node **stack_src, t_node **stack_dst, int dir)
 @brief A function that executes the sequence of operations based on calculated
 minimum cost.
 */
-static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int dir)
+static void	do_ops(t_node **stk_src, t_node **stk_dst, t_move *move, int dir)
 {
 	int	a_moves;
 	int	b_moves;
 
 	if (move->cost_shared > 0)
-		rr(stack_src, stack_dst, move->cost_shared);
+		rr(stk_src, stk_dst, move->cost_shared);
 	else if (move->cost_shared < 0)
-		rrr(stack_src, stack_dst, ft_abs(move->cost_shared));
+		rrr(stk_src, stk_dst, ft_abs(move->cost_shared));
 	a_moves = ft_abs(move->cost_a) - ft_abs(move->cost_shared);
 	b_moves = ft_abs(move->cost_b) - ft_abs(move->cost_shared);
 	if (a_moves > 0)
 	{
 		if (move->cost_a > 0)
-			ra(stack_src, a_moves);
+			ra(stk_src, a_moves);
 		else
-			rra(stack_src, a_moves);
+			rra(stk_src, a_moves);
 	}
 	if (b_moves > 0)
 	{
 		if (move->cost_b > 0)
-			rb(stack_dst, b_moves);
+			rb(stk_dst, b_moves);
 		else
-			rrb(stack_dst, b_moves);
+			rrb(stk_dst, b_moves);
 	}
-	do_push(stack_src, stack_dst, dir);
+	do_push(stk_src, stk_dst, dir);
 }
 
 /*
@@ -81,7 +81,7 @@ in the order of descending cost.
 each stack.
 @param dir The direction of sorting. 0 for descending, 1 for ascending.
 */
-void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int dir)
+void	push_opt(t_node **stack_a, t_node **stack_b, t_move *move, int dir)
 {
 	t_node	*tmp;
 
