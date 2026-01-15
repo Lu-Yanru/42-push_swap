@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:04:31 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 20:14:12 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,23 @@ static int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 {
 	int	i;
 
-	*tail_val = malloc(stack_size * sizeof(int));
+	*tail_val = malloc((stack_size + 1) * sizeof(int));
 	if (!tail_val)
 		return (0);
-	*tail = malloc(stack_size * sizeof(t_node *));
+	*tail = malloc((stack_size + 1) * sizeof(t_node *));
 	if (!tail)
 	{
 		free(tail_val);
 		return (0);
 	}
 	i = 0;
-	while (i < stack_size)
+	while (i <= stack_size)
 	{
 		(*tail)[i] = NULL;
 		(*tail_val)[i] = INT_MAX;
 		i++;
 	}
+	(*tail_val)[0] = INT_MIN;
 	return (1);
 }
 
