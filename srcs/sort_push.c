@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 18:41:20 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 13:31:33 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction)
 @brief A function that pushes each non-LIS node from stack a to stack b
 in the order of descending cost.
 */
-void	push_to_b(t_node **stack_a, t_node **stack_b, t_move *move)
+void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int direction)
 {
 	t_node	*tmp;
 
@@ -63,8 +63,8 @@ void	push_to_b(t_node **stack_a, t_node **stack_b, t_move *move)
 			printf("push node\n");
 			assign_index(stack_a);
 			assign_index(stack_b);
-			calc_cost(stack_a, stack_b, move, 0);
-			do_ops(stack_a, stack_b, move, 0);
+			calc_cost(stack_a, stack_b, move, direction);
+			do_ops(stack_a, stack_b, move, direction);
 			move->size_a--;
 			move->size_b++;
 			tmp = *stack_a;

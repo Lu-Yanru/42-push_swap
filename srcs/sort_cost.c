@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:28:12 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 19:19:35 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 13:51:37 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,23 @@ void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int direction)
 	tmp_move.size_a = move->size_a;
 	tmp_move.size_b = move->size_b;
 	tmp_move.index = tmp->index;
+	if (move->size_b <= 1 && tmp->lis == 0)
+	{
+		move->cost_a = 0;
+		move->cost_b = 0;
+		move->cost_shared = 0;
+		move->cost_all = 0;
+		return ;
+	}
 	while (tmp && min_cost > tmp_move.index + 1 && min_cost > tmp_move.size_a - tmp_move.index - 1)
 	{
 		tmp_move.index = tmp->index;
+		if (direction == 0 && tmp->lis != 0)
+		{
+			// not calc cost_a
+			tmp = tmp->next;
+			continue ;
+		}
 		if (direction != 0)
 			tmp_move.target_index = find_target_ascend(*stack_a, tmp->value);
 		else

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 18:45:42 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 13:40:31 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
 	int		lis_size;
 	t_move	move;
+	//int		tmp_swap;
 
 	move.size_a = size;
 	move.size_b = 0;
@@ -82,10 +83,13 @@ void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 			printf("%i\n", tmp->value);
 		tmp = tmp->next;
 	}
-	push_to_b(stack_a, stack_b, &move);
+	push_optimally(stack_a, stack_b, &move, 0);
 	if (lis_size < 3)
 		sort_three(stack_a);
-	/*push_to_a(stack_b, stack_a, &move);
+	/*move.size_a = tmp_swap;
+	move.size_a = move.size_b;
+	move.size_b = tmp_swap;
+	push_optimally(stack_b, stack_a, &move, 1);
 	rotate_to_ascend(stack_a);*/
 	tmp = *stack_a;
 	printf("stacka\n");
