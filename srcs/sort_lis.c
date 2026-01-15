@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 14:29:01 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:04:31 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 @brief A funtion that initializes the tail and tail_val arrays.
 @return 0 if the initializatio failed. 1 if successful.
 */
-int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
+static int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 If the size of LIS is smaller than 3, mark more nodes as LIS
 until there are 3 nodes marked as LIS.
 */
-void	mark_lis(t_node **tail, int lis_size)
+static void	mark_lis(t_node **tail, int lis_size)
 {
 	t_node	*tmp;
 
@@ -85,7 +85,7 @@ If not, search right half.
 Do this until the range is empty.
 A binary search can be used because the tail_val array is sorted.
 */
-int	binary_search_lis(int *tail_val, int left, int right, int value)
+static int	binary_search_lis(int *tail_val, int left, int right, int value)
 {
 	int	mid;
 	int	res;

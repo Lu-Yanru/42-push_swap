@@ -6,31 +6,11 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:26:44 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 17:17:31 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:07:21 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-/*
-@brief A function that marks the index of each element in a stack.
-*/
-void	assign_index(t_node **stack)
-{
-	t_node	*tmp;
-	int		i;
-
-	if (!(*stack))
-		return ;
-	tmp = *stack;
-	i = 0;
-	while (tmp)
-	{
-		tmp->index = i;
-		tmp = tmp->next;
-		i++;
-	}
-}
 
 /*
 @brief A function to get the index of the smallest number in a stack.
@@ -100,7 +80,7 @@ If tmp_val remains unchanged from the inital value, it means that all values
 in stack a are smaller than the to-be-moved value. In this case,
 the target index is the index of the smallest number in stack a.
 */
-int	find_target_ascend(t_node *stack, int value)
+static int	find_target_ascend(t_node *stack, int value)
 {
 	t_node	*tmp;
 	long	tmp_val;
@@ -142,7 +122,7 @@ If tmp_val remains unchanged from the inital value, it means that all values
 in stack b are bigger than the to-be-moved value. In this case,
 the target index is the index of the biggest number in stack b.
 */
-int	find_target_descend(t_node *stack, int value)
+static int	find_target_descend(t_node *stack, int value)
 {
 	t_node	*tmp;
 	long	tmp_val;
@@ -163,5 +143,22 @@ int	find_target_descend(t_node *stack, int value)
 	}
 	if (tmp_val == (long) INT_MIN - 1)
 		target_index = get_biggest_index(stack);
+	return (target_index);
+}
+
+/*
+@brief A function to find the target index in the destination stack
+for the current value for direction ascending (1) or descending (0).
+*/
+int	find_target(t_node *stack, int value, int direction)
+{
+	int	target_index;
+
+	if (!stack)
+		return (0);
+	if (direction != 0)
+		target_index = find_target_ascend(stack, value);
+	else
+		target_index = find_target_descend(stack, value);
 	return (target_index);
 }

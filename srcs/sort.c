@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 13:40:31 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:00:59 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 @param stack The stack to be checked.
 @return 1 if the stack is sorted. 0 if not.
 */
-int	check_sorted(t_node *stack)
+static int	check_sorted(t_node *stack)
 {
 	if (!stack)
 		return (1);
@@ -33,7 +33,7 @@ int	check_sorted(t_node *stack)
 /*
 @brief A function that sorts a stack with 3 elements in 2 or less steps.
 */
-void	sort_three(t_node **stack)
+static void	sort_three(t_node **stack)
 {
 	int	first;
 	int	second;
@@ -65,24 +65,15 @@ void	sort_three(t_node **stack)
 with the help of stack b. It uses the algorithm described in
 README.md.
 */
-void	sort_big(t_node **stack_a, t_node **stack_b, int size)
+static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
 	int		lis_size;
 	t_move	move;
-	//int		tmp_swap;
+	//int		tmp;
 
 	move.size_a = size;
 	move.size_b = 0;
 	find_lis(stack_a, &lis_size, size);
-	t_node	*tmp;
-	tmp = *stack_a;
-	printf("lis\n");
-	while (tmp)
-	{
-		if (tmp->lis != 0)
-			printf("%i\n", tmp->value);
-		tmp = tmp->next;
-	}
 	push_optimally(stack_a, stack_b, &move, 0);
 	if (lis_size < 3)
 		sort_three(stack_a);
@@ -91,20 +82,6 @@ void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	move.size_b = tmp_swap;
 	push_optimally(stack_b, stack_a, &move, 1);
 	rotate_to_ascend(stack_a);*/
-	tmp = *stack_a;
-	printf("stacka\n");
-	while (tmp)
-	{
-		printf("%i\n", tmp->value);
-		tmp = tmp->next;
-	}
-	printf("stackb\n");
-	tmp = *stack_b;
-	while (tmp)
-	{
-		printf("%i\n", tmp->value);
-		tmp = tmp->next;
-	}
 }
 
 /*

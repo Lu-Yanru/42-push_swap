@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:42:03 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 12:33:56 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:02:46 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 @brief A function to rotate a stack forward. Top node becomes bottom node.
 */
-void	rotate(t_node **stack)
+static void	rotate(t_node **stack)
 {
 	t_node	*last;
 	t_node	*tmp;

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 13:05:31 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/14 12:35:43 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:02:31 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 @brief A function to rotate a stack backwards. The bottom becomes the top.
 */
-void	rev_rotate(t_node **stack)
+static void	rev_rotate(t_node **stack)
 {
 	t_node	*last;
 

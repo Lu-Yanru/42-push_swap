@@ -6,11 +6,79 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:28:12 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 13:51:37 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:06:01 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/*
+@brief A function that calculates the cost for moving one node to the top
+of the stack.
+@param index The index of the node to be moved.
+@param size The size of the stack.
+@return The cost for moving the node at to the top of the stack.
+Positive if rotate. Negative if reverse rotate.
+*/
+static int	calc_cost_one_node(int index, int size)
+{
+	int	cost;
+
+	if (size <= 1)
+		return (0);
+	if (index < (size / 2))
+		cost = index;
+	else
+		cost = -(size - index);
+	return (cost);
+}
+
+/*
+@brief A function that calculates the number of steps where both stacks
+can be rotated in one direction using rr or rrr.
+Positive if rotate. Negative if reverse rotate.
+*/
+static int	calc_cost_shared(int cost_a, int cost_b)
+{
+	int	cost_shared;
+
+	if (ft_abs(cost_a) < ft_abs(cost_b))
+		cost_shared = cost_a;
+	else
+		cost_shared = cost_b;
+	if ((cost_a <= 0 && cost_b <= 0) || (cost_a >= 0 && cost_b >= 0))
+		return (cost_shared);
+	else
+		return (0);
+}
+
+/*
+@brief A function that calculated the total cost for moving one node to
+its correct position in the other stack.
+Always positive.
+*/
+static int	calc_cost_all(int cost_a, int cost_b)
+{
+	int	cost_all;
+	
+	if (ft_abs(cost_a) > ft_abs(cost_b))
+		cost_all = ft_abs(cost_a);
+	else
+		cost_all = ft_abs(cost_b);
+	if ((cost_a <= 0 && cost_b <= 0) || (cost_a >= 0 && cost_b >= 0))
+		return (cost_all);
+	else
+		return (ft_abs(cost_a) + ft_abs(cost_b));
+}
+
+static void	update_min_cost(t_move *move, t_move *tmp_move)
+{
+	move->target_index = tmp_move->target_index;
+	move->cost_a = tmp_move->cost_a;
+	move->cost_b = tmp_move->cost_b;
+	move->cost_all = tmp_move->cost_all;
+	move->cost_shared = tmp_move->cost_shared;
+}
 
 /*
 @brief A function that calculates the cost for moving a node to the correct position.
@@ -19,84 +87,24 @@ cost_a, cost_b, cost_shared: rotate if positive. reverse rotate if negative.
 void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int direction)
 {
 	t_node	*tmp;
-	int		min_cost;
 	t_move	tmp_move;
 
-	min_cost = INT_MAX;
+	move->cost_all = INT_MAX;
 	tmp = *stack_a;
-	tmp_move.size_a = move->size_a;
-	tmp_move.size_b = move->size_b;
-	tmp_move.index = tmp->index;
-	if (move->size_b <= 1 && tmp->lis == 0)
+	while (tmp && move->cost_all > tmp->index && move->cost_all > move->size_a - tmp->index)
 	{
-		move->cost_a = 0;
-		move->cost_b = 0;
-		move->cost_shared = 0;
-		move->cost_all = 0;
-		return ;
-	}
-	while (tmp && min_cost > tmp_move.index + 1 && min_cost > tmp_move.size_a - tmp_move.index - 1)
-	{
-		tmp_move.index = tmp->index;
 		if (direction == 0 && tmp->lis != 0)
 		{
-			// not calc cost_a
 			tmp = tmp->next;
 			continue ;
 		}
-		if (direction != 0)
-			tmp_move.target_index = find_target_ascend(*stack_a, tmp->value);
-		else
-			tmp_move.target_index = find_target_descend(*stack_b, tmp->value);
-		if (tmp_move.index < (tmp_move.size_a) / 2)
-			tmp_move.cost_a = tmp_move.index;
-		else
-			tmp_move.cost_a = -(tmp_move.size_a - tmp_move.index);
-		if (tmp_move.target_index < (tmp_move.size_b) / 2)
-			tmp_move.cost_b = tmp_move.target_index;
-		else
-			tmp_move.cost_b = -(tmp_move.size_b - tmp_move.target_index);
-		if (tmp_move.cost_a < 0 && tmp_move.cost_b < 0)
-		{
-			if (ft_abs(tmp_move.cost_a) >= ft_abs(tmp_move.cost_b))
-			{
-				tmp_move.cost_shared = tmp_move.cost_b;
-				tmp_move.cost_all = ft_abs(tmp_move.cost_a);
-			}
-			else
-			{
-				tmp_move.cost_shared = tmp_move.cost_a;
-				tmp_move.cost_all = ft_abs(tmp_move.cost_b);
-			}
-		}
-		else if (tmp_move.cost_a >= 0 && tmp_move.cost_b >= 0)
-		{
-			if (tmp_move.cost_a >= tmp_move.cost_b)
-			{
-				tmp_move.cost_shared = tmp_move.cost_b;
-				tmp_move.cost_all = tmp_move.cost_a;
-			}
-			else
-			{
-				tmp_move.cost_shared = tmp_move.cost_a;
-				tmp_move.cost_all = tmp_move.cost_b;
-			}
-		}
-		else
-		{
-			tmp_move.cost_shared = 0;
-			tmp_move.cost_all = ft_abs(tmp_move.cost_a) + ft_abs(tmp_move.cost_b);
-		}
-		if (tmp_move.cost_all < min_cost)
-		{
-			min_cost = tmp_move.cost_all;
-			move->index = tmp_move.index;
-			move->target_index = tmp_move.target_index;
-			move->cost_a = tmp_move.cost_a;
-			move->cost_b = tmp_move.cost_b;
-			move->cost_all = tmp_move.cost_all;
-			move->cost_shared = tmp_move.cost_shared;
-		}
+		tmp_move.target_index = find_target(*stack_b, tmp->value, direction);
+		tmp_move.cost_a = calc_cost_one_node(tmp->index, move->size_a);
+		tmp_move.cost_b = calc_cost_one_node(tmp_move.target_index, move->size_b);
+		tmp_move.cost_shared = calc_cost_shared(tmp_move.cost_a, tmp_move.cost_b);
+		tmp_move.cost_all = calc_cost_all(tmp_move.cost_a, tmp_move.cost_b);
+		if (tmp_move.cost_all < move->cost_all)
+			update_min_cost(move, &tmp_move);
 		tmp = tmp->next;
 	}
 }

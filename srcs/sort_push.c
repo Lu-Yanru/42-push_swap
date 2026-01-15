@@ -6,17 +6,45 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 13:31:33 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:05:15 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /*
-@brief A function that executes the 
-@param direction The direction of sorting. 0 for descending, 1 for ascending.
+@brief A function that marks the index of each element in a stack.
 */
-void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction)
+static void	assign_index(t_node **stack)
+{
+	t_node	*tmp;
+	int		i;
+
+	if (!(*stack))
+		return ;
+	tmp = *stack;
+	i = 0;
+	while (tmp)
+	{
+		tmp->index = i;
+		tmp = tmp->next;
+		i++;
+	}
+}
+
+static void	do_push(t_node **stack_src, t_node **stack_dst, int direction)
+{
+	if (direction == 0)
+		pb(stack_dst, stack_src, 1);
+	else
+		pa(stack_dst, stack_src, 1);
+}
+
+/*
+@brief A function that executes the sequence of operations based on calculated
+minimum cost.
+*/
+static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction)
 {
 	int	a_moves;
 	int	b_moves;
@@ -41,15 +69,16 @@ void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction)
 		else
 			rrb(stack_dst, b_moves);
 	}
-	if (direction == 0)
-		pb(stack_dst, stack_src, 1);
-	else
-		pa(stack_dst, stack_src, 1);
+	do_push(stack_src, stack_dst, direction);
 }
 
 /*
-@brief A function that pushes each non-LIS node from stack a to stack b
+@brief A function that pushes each non-LIS node from one stack to another
 in the order of descending cost.
+@param stack_a The stack where you are pushing from.
+@param stack_b The stack where you are pushing to.
+@param move A structure that stores the minimum cost/steps for rotating each stack.
+@param direction The direction of sorting. 0 for descending, 1 for ascending.
 */
 void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int direction)
 {

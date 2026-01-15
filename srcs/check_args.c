@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:23:14 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 11:40:06 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 17:55:14 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /*
 @brief A function that checks whether a string contains
 only whole numbers (optionally preceded by +/- sign) separated by a space.
-@param[in] str The string to be checked.
+@param str The string to be checked.
 @return 1 if the string contains only numbers separated by one space. 0 if not.
 */
-int	check_digits(char *str)
+static int	check_digits(char *str)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ int	check_digits(char *str)
 @brief A function that checks whether the each number in an array of long numbers
 are unque and also within the range of an integer.
 */
-int	check_unique_n_range(long *arr, int count)
+static int	check_unique_n_range(long *arr, int count)
 {
 	int	i;
 	int	j;
@@ -70,7 +70,7 @@ int	check_unique_n_range(long *arr, int count)
 @brief A function that checks if each command line argument only contains
 numbers, and if so, join them into a big string.
 */
-char	*build_arg_str(int argc, char *argv[])
+static char	*build_arg_str(int argc, char *argv[])
 {
 	int		i;
 	char	*str;
@@ -99,12 +99,12 @@ char	*build_arg_str(int argc, char *argv[])
 /*
 @brief A function that creates an array of long numbers based on a string
 separated by spaces. It also calculates the size of the array.
-@param[in] str A formatted string containing the numbers to be converted
+@param str A formatted string containing the numbers to be converted
 separated by spaces.
-@param[in] count A pointer to the size of the array.
+@param count A pointer to the size of the array.
 @return The array of long numbers.
 */
-long	*create_number_array(char *str, int *count)
+static long	*create_number_array(char *str, int *count)
 {
 	long	*arr;
 
@@ -118,8 +118,8 @@ long	*create_number_array(char *str, int *count)
 
 /*
 @brief A function to check the validity of the input arguments.
-@param[in] argc The number of arguments given to the program.
-@param[in] argv The arguments given to the program.
+@param argc The number of arguments given to the program.
+@param argv The arguments given to the program.
 @return 1 if the arguments are valid. 0 if not.
 
 @details
