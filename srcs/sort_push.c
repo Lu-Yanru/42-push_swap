@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:26:02 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:35:38 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	push_opt(t_node **stack_a, t_node **stack_b, t_move *move, int dir)
 	{
 		if (tmp->lis == 0)
 		{
-			printf("push node\n");
 			assign_index(stack_a);
 			assign_index(stack_b);
 			calc_cost(stack_a, stack_b, move, dir);

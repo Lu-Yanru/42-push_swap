@@ -48,10 +48,6 @@ The following operations can be used:
     - Step 6: Push the number with the lowest cost from `stack b` to `stack a`. Repeat step 5 and 6 until `stack b` is empty.
     - Step 7: Rotate `stack a` until the smallest number is on the top.
 
-## Stack implementation
-This project implements a stack using a doubly linked list to enable fast searching and sorting.
-A node in the stack is represented using a structure containing its value, its index in the sorted order, the cost for moving it to the correct position
-
 ## Checker
 The checker confirms the result of the sorting. It displays "OK" if `stack a` is correctly sorted and `stack b` is empty, "KO" otherwise.
 

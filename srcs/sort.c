@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:27:07 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:31:51 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ static void	sort_three(t_node **stack)
 }
 
 /*
+@brief A function that rotates the smallest number to the top of the stack.
+*/
+static void	rotate_to_ascend(t_node **stack, int size)
+{
+	int	min_ind;
+
+	min_ind = get_smallest_index(*stack);
+	if (min_ind < size / 2)
+		ra(stack, min_ind);
+	else
+		rra(stack, size - min_ind);
+}
+
+/*
 @brief A function that sorts stack a with a size larger than 3
 with the help of stack b. It uses the algorithm described in
 README.md.
@@ -81,7 +95,7 @@ static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	move.size_a = move.size_b;
 	move.size_b = tmp;
 	push_opt(stack_b, stack_a, &move, 1);
-	/*rotate_to_ascend(stack_a);*/
+	rotate_to_ascend(stack_a, size);
 }
 
 /*
