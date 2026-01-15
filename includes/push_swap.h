@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:07:37 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:16:33 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	pb(t_node **stack_b, t_node **stack_a, int n);
 
 /* Sort main */
 void	sort(t_node **stack_a, t_node **stack_b, int size);
-void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int direction);
+void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int dir);
 
 /* Sort LIS */
 void	find_lis(t_node **stack, int *lis_size, int stack_size);
 
 /* Sort cost */
-void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int direction);
+void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int dir);
 int		find_target(t_node *stack, int value, int direction);
 int		get_smallest_index(t_node *stack);
 int		get_biggest_index(t_node *stack);

@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:00:59 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:11:41 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 {
 	int		lis_size;
 	t_move	move;
-	//int		tmp;
+	int		tmp;
 
 	move.size_a = size;
 	move.size_b = 0;
@@ -77,11 +77,11 @@ static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	push_optimally(stack_a, stack_b, &move, 0);
 	if (lis_size < 3)
 		sort_three(stack_a);
-	/*move.size_a = tmp_swap;
+	tmp = move.size_a;
 	move.size_a = move.size_b;
-	move.size_b = tmp_swap;
+	move.size_b = tmp;
 	push_optimally(stack_b, stack_a, &move, 1);
-	rotate_to_ascend(stack_a);*/
+	/*rotate_to_ascend(stack_a);*/
 }
 
 /*

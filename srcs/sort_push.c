@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:05:15 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/15 18:19:25 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	assign_index(t_node **stack)
 	}
 }
 
-static void	do_push(t_node **stack_src, t_node **stack_dst, int direction)
+static void	do_push(t_node **stack_src, t_node **stack_dst, int dir)
 {
-	if (direction == 0)
+	if (dir == 0)
 		pb(stack_dst, stack_src, 1);
 	else
 		pa(stack_dst, stack_src, 1);
@@ -44,7 +44,7 @@ static void	do_push(t_node **stack_src, t_node **stack_dst, int direction)
 @brief A function that executes the sequence of operations based on calculated
 minimum cost.
 */
-static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int direction)
+static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int dir)
 {
 	int	a_moves;
 	int	b_moves;
@@ -69,7 +69,7 @@ static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int dir
 		else
 			rrb(stack_dst, b_moves);
 	}
-	do_push(stack_src, stack_dst, direction);
+	do_push(stack_src, stack_dst, dir);
 }
 
 /*
@@ -77,10 +77,11 @@ static void	do_ops(t_node **stack_src, t_node **stack_dst, t_move *move, int dir
 in the order of descending cost.
 @param stack_a The stack where you are pushing from.
 @param stack_b The stack where you are pushing to.
-@param move A structure that stores the minimum cost/steps for rotating each stack.
-@param direction The direction of sorting. 0 for descending, 1 for ascending.
+@param move A structure that stores the minimum cost/steps for rotating
+each stack.
+@param dir The direction of sorting. 0 for descending, 1 for ascending.
 */
-void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int direction)
+void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int dir)
 {
 	t_node	*tmp;
 
@@ -92,8 +93,8 @@ void	push_optimally(t_node **stack_a, t_node **stack_b, t_move *move, int direct
 			printf("push node\n");
 			assign_index(stack_a);
 			assign_index(stack_b);
-			calc_cost(stack_a, stack_b, move, direction);
-			do_ops(stack_a, stack_b, move, direction);
+			calc_cost(stack_a, stack_b, move, dir);
+			do_ops(stack_a, stack_b, move, dir);
 			move->size_a--;
 			move->size_b++;
 			tmp = *stack_a;
