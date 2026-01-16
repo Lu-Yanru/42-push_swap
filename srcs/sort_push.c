@@ -6,18 +6,66 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:57:43 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/16 12:58:00 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	do_push(t_node **stack_src, t_node **stack_dst, int dir)
+static void	do_ops_asc(t_node **stk_src, t_node **stk_dst, t_move *move)
 {
-	if (dir == 0)
-		pb(stack_dst, stack_src, 1);
-	else
-		pa(stack_dst, stack_src, 1);
+	int	src_moves;
+	int	dst_moves;
+
+	if (move->cost_shared > 0)
+		rr(stk_src, stk_dst, move->cost_shared);
+	else if (move->cost_shared < 0)
+		rrr(stk_src, stk_dst, ft_abs(move->cost_shared));
+	src_moves = ft_abs(move->cost_a) - ft_abs(move->cost_shared);
+	dst_moves = ft_abs(move->cost_b) - ft_abs(move->cost_shared);
+	if (src_moves > 0)
+	{
+		if (move->cost_a > 0)
+			rb(stk_src, src_moves);
+		else
+			rrb(stk_src, dst_moves);
+	}
+	if (dst_moves > 0)
+	{
+		if (move->cost_b > 0)
+			ra(stk_dst, dst_moves);
+		else
+			rra(stk_dst, dst_moves);
+	}
+	pa(stk_dst, stk_src, 1);
+}
+
+static void	do_ops_desc(t_node **stk_src, t_node **stk_dst, t_move *move)
+{
+	int	src_moves;
+	int	dst_moves;
+
+	if (move->cost_shared > 0)
+		rr(stk_src, stk_dst, move->cost_shared);
+	else if (move->cost_shared < 0)
+		rrr(stk_src, stk_dst, ft_abs(move->cost_shared));
+	src_moves = ft_abs(move->cost_a) - ft_abs(move->cost_shared);
+	dst_moves = ft_abs(move->cost_b) - ft_abs(move->cost_shared);
+	if (src_moves > 0)
+	{
+		if (move->cost_a > 0)
+			ra(stk_src, src_moves);
+		else
+			rra(stk_src, src_moves);
+	}
+	if (dst_moves > 0)
+	{
+		if (move->cost_b > 0)
+			rb(stk_dst, dst_moves);
+		else
+			rrb(stk_dst, dst_moves);
+	}
+	pb(stk_dst, stk_src, 1);
 }
 
 /*
@@ -26,30 +74,10 @@ minimum cost.
 */
 static void	do_ops(t_node **stk_src, t_node **stk_dst, t_move *move, int dir)
 {
-	int	a_moves;
-	int	b_moves;
-
-	if (move->cost_shared > 0)
-		rr(stk_src, stk_dst, move->cost_shared);
-	else if (move->cost_shared < 0)
-		rrr(stk_src, stk_dst, ft_abs(move->cost_shared));
-	a_moves = ft_abs(move->cost_a) - ft_abs(move->cost_shared);
-	b_moves = ft_abs(move->cost_b) - ft_abs(move->cost_shared);
-	if (a_moves > 0)
-	{
-		if (move->cost_a > 0)
-			ra(stk_src, a_moves);
-		else
-			rra(stk_src, a_moves);
-	}
-	if (b_moves > 0)
-	{
-		if (move->cost_b > 0)
-			rb(stk_dst, b_moves);
-		else
-			rrb(stk_dst, b_moves);
-	}
-	do_push(stk_src, stk_dst, dir);
+	if (dir == 0)
+		do_ops_desc(stk_src, stk_dst, move);
+	else
+		do_ops_asc(stk_src, stk_dst, move);
 }
 
 /*

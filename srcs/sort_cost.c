@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:28:12 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 19:17:23 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/16 17:01:36 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int dir)
 
 	move->cost_all = INT_MAX;
 	tmp = *stack_a;
-	while (tmp && move->cost_all > tmp->index
-		&& move->cost_all > move->size_a - tmp->index)
+	while (tmp)
 	{
-		if (dir == 0 && tmp->lis != 0)
+		if ((dir == 0 && tmp->lis != 0) || (move->cost_all <= tmp->index
+			&& move->cost_all <= move->size_a - tmp->index))
 		{
 			tmp = tmp->next;
 			continue ;

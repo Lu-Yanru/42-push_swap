@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:20:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/10 11:39:27 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/16 17:50:20 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	count_numbers(char *str)
 
 	i = 0;
 	count = 0;
+	if (!*str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == ' ')

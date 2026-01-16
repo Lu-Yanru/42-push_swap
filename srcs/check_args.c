@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:23:14 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 17:55:14 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/16 17:13:00 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	check_digits(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (is_sign(str[i]) && str[i + 1] != '\0' && str[i + 1] != ' ')

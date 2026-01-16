@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 20:14:12 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/16 11:54:17 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
 If the size of LIS is smaller than 3, mark more nodes as LIS
 until there are 3 nodes marked as LIS.
 */
-static void	mark_lis(t_node **tail, int lis_size)
+static void	mark_lis(t_node **tail, int lis_size, t_node **stack)
 {
 	t_node	*tmp;
 
@@ -55,7 +55,7 @@ static void	mark_lis(t_node **tail, int lis_size)
 		tmp->lis = 1;
 		tmp = tmp->lis_prev;
 	}
-	tmp = *tail;
+	tmp = *stack;
 	while (lis_size < 3)
 	{
 		if (tmp->lis == 0)
@@ -63,7 +63,7 @@ static void	mark_lis(t_node **tail, int lis_size)
 			tmp->lis = 1;
 			lis_size++;
 		}
-		tmp = tmp->prev;
+		tmp = tmp->next;
 	}
 }
 
@@ -159,7 +159,7 @@ void	find_lis(t_node **stack, int *lis_size, int stack_size)
 			*lis_size = tail_len;
 		tmp = tmp->next;
 	}
-	mark_lis(&(tail[*lis_size]), *lis_size);
+	mark_lis(&(tail[*lis_size]), *lis_size, stack);
 	free(tail_val);
 	free(tail);
 }
