@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/16 17:01:15 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/19 16:00:44 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ typedef struct s_move
 	int	cost_all;
 	int	cost_shared;
 }	t_move;
+
+typedef struct s_lis
+{
+	t_node	**tail;
+	int		*tail_val;
+	int		*tail_idx;
+	int		tail_len;
+	int		idx;
+	int		lis_size;
+}	t_lis;
 
 /* Check validity of input */
 int		check_args(int argc, char *argv[], long **arr, int *size);
@@ -80,7 +90,8 @@ void	sort(t_node **stack_a, t_node **stack_b, int size);
 void	push_opt(t_node **stack_a, t_node **stack_b, t_move *move, int dir);
 
 /* Sort LIS */
-void	find_lis(t_node **stack, int *lis_size, int stack_size);
+void	find_lis(t_node **stack, t_lis *lis, int stack_size);
+void	free_t_lis(t_lis *lis);
 
 /* Sort cost */
 void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int dir);

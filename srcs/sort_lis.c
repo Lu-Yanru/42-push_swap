@@ -6,37 +6,52 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/16 11:54:17 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/19 16:14:35 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /*
+@brief A function that frees the elements in t_lis.
+*/
+void	free_t_lis(t_lis *lis)
+{
+	free(lis->tail);
+	free(lis->tail_idx);
+	free(lis->tail_val);
+	lis->idx = 0;
+	lis->lis_size = 0;
+	lis->tail_len = 0;
+}
+
+/*
 @brief A funtion that initializes the tail and tail_val arrays.
 @return 0 if the initializatio failed. 1 if successful.
 */
-static int	init_tail_arrs(int **tail_val, t_node ***tail, int stack_size)
+static int	init_tail_arrs(t_lis *lis, int stack_size)
 {
 	int	i;
 
-	*tail_val = malloc((stack_size + 1) * sizeof(int));
-	if (!tail_val)
-		return (0);
-	*tail = malloc((stack_size + 1) * sizeof(t_node *));
-	if (!tail)
+	lis->idx = 0;
+	lis->lis_size = 0;
+	lis->tail_val = malloc((stack_size + 1) * sizeof(int));
+	lis->tail_idx = malloc((stack_size + 1) * sizeof(int));
+	lis->tail = malloc((stack_size + 1) * sizeof(t_node *));
+	if (!(lis->tail_val) || !(lis->tail_idx) || !(lis->tail))
 	{
-		free(tail_val);
+		free_t_lis(lis);
 		return (0);
 	}
 	i = 0;
 	while (i <= stack_size)
 	{
-		(*tail)[i] = NULL;
-		(*tail_val)[i] = INT_MAX;
+		(lis->tail)[i] = NULL;
+		(lis->tail_val)[i] = INT_MAX;
+		(lis->tail_idx)[i] = 0;
 		i++;
 	}
-	(*tail_val)[0] = INT_MIN;
+	(lis->tail_val)[0] = INT_MIN;
 	return (1);
 }
 
@@ -135,31 +150,36 @@ Finally, mark the nodes belonging to LIS in the stack by looping from the tail.
 If the size of LIS is smaller than 3, mark more nodes as LIS
 until there are 3 nodes marked as LIS.
 */
-void	find_lis(t_node **stack, int *lis_size, int stack_size)
+void	find_lis(t_node **stack, t_lis *lis, int stack_size)
 {
 	t_node	*tmp;
-	t_node	**tail;
-	int		*tail_val;
-	int		tail_len;
 
-	if (!stack)
+	if (!*stack)
 		return ;
-	if (init_tail_arrs(&tail_val, &tail, stack_size) == 0)
+	if (init_tail_arrs(lis, stack_size) == 0)
 		error_exit(NULL, stack, NULL);
-	*lis_size = 0;
 	tmp = *stack;
-	while (tmp)
+	while (lis->idx < 2 * stack_size)
 	{
-		tail_len = binary_search_lis(tail_val, 1, *lis_size, tmp->value);
-		if (tail_len > 1)
-			tmp->lis_prev = tail[tail_len - 1];
-		tail[tail_len] = tmp;
-		tail_val[tail_len] = tmp->value;
-		if (tail_len > *lis_size)
-			*lis_size = tail_len;
-		tmp = tmp->next;
+		lis->tail_len = binary_search_lis(lis->tail_val, 1, lis->lis_size, tmp->value);
+		if (lis->tail_len == 1
+			|| lis->tail_idx[lis->tail_len - 1] >= lis->idx - stack_size)
+		{
+			if (lis->tail_len > 1)
+				tmp->lis_prev = lis->tail[lis->tail_len - 1];
+			else
+				tmp->lis_prev = NULL;
+			lis->tail[lis->tail_len] = tmp;
+			lis->tail_val[lis->tail_len] = tmp->value;
+			lis->tail_idx[lis->tail_len] = lis->idx;
+			if (lis->tail_len > lis->lis_size && lis->tail_len <= stack_size)
+				lis->lis_size = lis->tail_len;
+		}
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			tmp = *stack;
+		lis->idx++;
 	}
-	mark_lis(&(tail[*lis_size]), *lis_size, stack);
-	free(tail_val);
-	free(tail);
+	mark_lis(&(lis->tail[lis->lis_size]), lis->lis_size, stack);
 }

@@ -9,7 +9,7 @@ SRC = $(addprefix $(SRCDIR)/, \
 	main.c \
 	main_utils.c \
 	check_args.c \
-	check_arg_utils.c \
+	check_args_utils.c \
 	stack_init.c \
 	stack_utils.c \
 	op_swap.c \
