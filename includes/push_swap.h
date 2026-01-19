@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/19 16:00:44 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/19 18:28:28 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ typedef struct s_lis
 {
 	t_node	**tail;
 	int		*tail_val;
-	int		*tail_idx;
 	int		tail_len;
-	int		idx;
 	int		lis_size;
 }	t_lis;
 
@@ -90,8 +88,7 @@ void	sort(t_node **stack_a, t_node **stack_b, int size);
 void	push_opt(t_node **stack_a, t_node **stack_b, t_move *move, int dir);
 
 /* Sort LIS */
-void	find_lis(t_node **stack, t_lis *lis, int stack_size);
-void	free_t_lis(t_lis *lis);
+int		find_lis(t_node **stack, int stack_size);
 
 /* Sort cost */
 void	calc_cost(t_node **stack_a, t_node **stack_b, t_move *move, int dir);

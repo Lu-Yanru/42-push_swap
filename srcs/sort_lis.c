@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 09:54:16 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/19 16:14:35 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/19 19:47:42 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,26 @@
 /*
 @brief A function that frees the elements in t_lis.
 */
-void	free_t_lis(t_lis *lis)
+static void	free_t_lis(t_lis *lis)
 {
 	free(lis->tail);
-	free(lis->tail_idx);
 	free(lis->tail_val);
-	lis->idx = 0;
 	lis->lis_size = 0;
 	lis->tail_len = 0;
+}
+
+static void	reset_lis_nodes(t_node **stack)
+{
+	t_node	*tmp;
+
+	if (!*stack)
+		return ;
+	tmp = *stack;
+	while (tmp)
+	{
+		tmp->lis_prev = NULL;
+		tmp = tmp->next;
+	}
 }
 
 /*
@@ -33,12 +45,10 @@ static int	init_tail_arrs(t_lis *lis, int stack_size)
 {
 	int	i;
 
-	lis->idx = 0;
-	lis->lis_size = 0;
+	lis->lis_size= 0;
 	lis->tail_val = malloc((stack_size + 1) * sizeof(int));
-	lis->tail_idx = malloc((stack_size + 1) * sizeof(int));
 	lis->tail = malloc((stack_size + 1) * sizeof(t_node *));
-	if (!(lis->tail_val) || !(lis->tail_idx) || !(lis->tail))
+	if (!(lis->tail_val) || !(lis->tail))
 	{
 		free_t_lis(lis);
 		return (0);
@@ -48,7 +58,6 @@ static int	init_tail_arrs(t_lis *lis, int stack_size)
 	{
 		(lis->tail)[i] = NULL;
 		(lis->tail_val)[i] = INT_MAX;
-		(lis->tail_idx)[i] = 0;
 		i++;
 	}
 	(lis->tail_val)[0] = INT_MIN;
@@ -124,7 +133,7 @@ static int	binary_search_lis(int *tail_val, int left, int right, int value)
 /*
 @brief A function that finds the longest increasing subsequence in a stack.
 @param stack The stack where we find the LIS.
-@param lis_size A pointer to the size of the LIS.
+@param lis_size A pointer to the size of the LIS
 @param stack_size The size of the stack.
 @details
 - Use tmp pointer to loop through the stack.
@@ -150,36 +159,93 @@ Finally, mark the nodes belonging to LIS in the stack by looping from the tail.
 If the size of LIS is smaller than 3, mark more nodes as LIS
 until there are 3 nodes marked as LIS.
 */
-void	find_lis(t_node **stack, t_lis *lis, int stack_size)
+static void	lis_from_start(t_node *start, t_lis *lis, int stack_size, t_node **stack)
 {
 	t_node	*tmp;
+	int		i;
 
-	if (!*stack)
+	if (!start || !*stack)
 		return ;
 	if (init_tail_arrs(lis, stack_size) == 0)
-		error_exit(NULL, stack, NULL);
-	tmp = *stack;
-	while (lis->idx < 2 * stack_size)
+		return ;
+	tmp = start;
+	i = 0;
+	while (i < stack_size)
 	{
 		lis->tail_len = binary_search_lis(lis->tail_val, 1, lis->lis_size, tmp->value);
-		if (lis->tail_len == 1
-			|| lis->tail_idx[lis->tail_len - 1] >= lis->idx - stack_size)
-		{
-			if (lis->tail_len > 1)
-				tmp->lis_prev = lis->tail[lis->tail_len - 1];
-			else
-				tmp->lis_prev = NULL;
-			lis->tail[lis->tail_len] = tmp;
-			lis->tail_val[lis->tail_len] = tmp->value;
-			lis->tail_idx[lis->tail_len] = lis->idx;
-			if (lis->tail_len > lis->lis_size && lis->tail_len <= stack_size)
-				lis->lis_size = lis->tail_len;
-		}
+		if (lis->tail_len == 1)
+			tmp->lis_prev = NULL;
+		else
+			tmp->lis_prev = lis->tail[lis->tail_len - 1];
+		lis->tail[lis->tail_len] = tmp;
+		lis->tail_val[lis->tail_len] = tmp->value;
+		if (lis->tail_len > lis->lis_size)
+			lis->lis_size = lis->tail_len;
 		if (tmp->next)
 			tmp = tmp->next;
 		else
 			tmp = *stack;
-		lis->idx++;
+		i++;
 	}
-	mark_lis(&(lis->tail[lis->lis_size]), lis->lis_size, stack);
+}
+
+/*
+@brief A function that counts how many numbers are greater than the current value
+in a circular way.
+*/
+static int	count_greater(t_node *start, int stack_size, t_node **stack)
+{
+	int		count;
+	t_node	*tmp;
+	int		i;
+
+	count = 0;
+	i = 1;
+	if (start->next)
+		tmp = start->next;
+	else
+		tmp = *stack;
+	while (i < stack_size)
+	{
+		if (tmp->value > start->value)
+			count++;
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			tmp = *stack;
+		i++;
+	}
+	return (count + 1);
+}
+
+int	find_lis(t_node **stack, int stack_size)
+{
+	t_node	*tmp;
+	t_node	*best_start;
+	t_lis	lis;
+	int		best_len;
+	
+	best_start = NULL;
+	best_len = 0;
+	tmp = *stack;
+	while (tmp)
+	{
+		if (count_greater(tmp, stack_size, stack) > best_len)
+		{
+			reset_lis_nodes(stack);
+			lis_from_start(tmp, &lis, stack_size, stack);
+			if (lis.lis_size > best_len)
+			{
+				best_len = lis.lis_size;
+				best_start = tmp;
+			}
+			free_t_lis(&lis);
+		}
+		tmp = tmp->next;
+	}
+	reset_lis_nodes(stack);
+	lis_from_start(best_start, &lis, stack_size, stack);
+	mark_lis(&lis.tail[best_len], best_len, stack);
+	free_t_lis(&lis);
+	return (best_len);
 }
