@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/16 12:58:00 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/21 12:20:25 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	do_ops_asc(t_node **stk_src, t_node **stk_dst, t_move *move)
 		if (move->cost_a > 0)
 			rb(stk_src, src_moves);
 		else
-			rrb(stk_src, dst_moves);
+			rrb(stk_src, src_moves);
 	}
 	if (dst_moves > 0)
 	{
