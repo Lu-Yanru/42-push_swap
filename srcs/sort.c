@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/22 14:25:03 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 16:20:37 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,33 +89,9 @@ static void	sort_big(t_node **stack_a, t_node **stack_b, int size)
 	move.size_b = 0;
 	assign_index(stack_a);
 	lis_size = find_lis(stack_a, size);
-	/*t_node	*tmpn;
-	tmpn = *stack_a;
-	printf("lis\n");
-	printf("lis_size: %i\n", lis_size);
-	while (tmpn)
-	{
-		if (tmpn->lis == 1)
-			printf("%i\n", tmpn->value);
-		tmpn = tmpn->next;
-	}*/
 	push_opt(stack_a, stack_b, &move, 0);
 	if (lis_size < 3)
 		sort_three(stack_a);
-	/*tmpn = *stack_a;
-	printf("stacka\n");
-	while (tmpn)
-	{
-		printf("%i\n", tmpn->value);
-		tmpn = tmpn->next;
-	}
-	tmpn = *stack_b;
-	printf("stackb\n");
-	while (tmpn)
-	{
-		printf("%i\n", tmpn->value);
-		tmpn = tmpn->next;
-	}*/
 	tmp = move.size_a;
 	move.size_a = move.size_b;
 	move.size_b = tmp;
