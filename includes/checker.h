@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_utils.c                                    :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 16:35:45 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/21 16:43:14 by yanlu            ###   ########.fr       */
+/*   Created: 2026/01/16 18:34:20 by yanlu             #+#    #+#             */
+/*   Updated: 2026/01/22 13:46:51 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	ft_strcpy(char *dst, char *src, int len)
-{
-	int	i;
+# include "../libft/libft.h"
+# include "push_swap.h"
 
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-}
+/* Read line */
+int		read_line(char **line);
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+/* Exec ops */
+void	exec_ops(char *line, t_node **stack_a, t_node **stack_b);
 
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
+/* Untilities */
+void	ft_strcpy(char *dst, char *src, int len);
+int		ft_strcmp(char *s1, char *s2);
+
+#endif

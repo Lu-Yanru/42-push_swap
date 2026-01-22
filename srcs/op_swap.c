@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 11:54:23 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:02:55 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 14:27:52 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 @brief A function that swaps the top 2 nodes in a stack.
 */
-static void	swap(t_node **stack)
+void	swap(t_node **stack)
 {
 	t_node	*tmp;
 

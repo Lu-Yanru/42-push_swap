@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 13:21:00 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:02:01 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 14:25:53 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 @brief	A function that puts the top node of the source stack on
 the top of the destination stack.
 */
-static void	push(t_node **dst, t_node **src)
+void	push(t_node **dst, t_node **src)
 {
 	t_node	*tmp;
 

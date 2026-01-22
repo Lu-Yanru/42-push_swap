@@ -1,14 +1,22 @@
+# Program names
 NAME = push_swap
+BONUS = checker
 
 # Directories
 SRCDIR = srcs
 INCDIR = includes
-LIBDIR = libft
-CHECKDIR = checker
+LIBFTDIR = libft
+CHECKDIR = checker_bonus
+
+# Libraries
+LIBFT = $(LIBFTDIR)/libft.a
+LIBPS = $(SRCDIR)/libpushswap.a
 
 # Source files and obj files
-SRC = $(addprefix $(SRCDIR)/, \
-	main.c \
+PSMAIN = push_swap.c
+PSMAINOBJ = push_swap.o
+
+PSSRC = $(addprefix $(SRCDIR)/, \
 	main_utils.c \
 	check_args.c \
 	check_args_utils.c \
@@ -25,51 +33,66 @@ SRC = $(addprefix $(SRCDIR)/, \
 	sort_cost_utils.c \
 )
 
+PSOBJ = $(PSSRC:.c=.o)
+
 CHECKSRC = $(addprefix $(CHECKDIR)/, \
 	checker.c \
 	checker_utils.c \
 	read_line.c \
-	exc_ops.c \
+	exec_ops.c \
 )
-
-OBJ = $(SRC:.c=.o)
 
 CHECKOBJ = $(CHECKSRC:.c=.o)
 
-HEADER = $(addprefix $(INCDIR)/, push_swap.h)
+PSHEADER = $(addprefix $(INCDIR)/, push_swap.h)
 
-LIBFT = libft/libft.a
-
-CHECKHEAD = checker/checker.h
-
-CHECKNAME = checker
+CHECKHEADER = $(addprefix $(INCDIR)/, checker.h)
 
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+INC = -I$(INCDIR) -I$(LIBFTDIR)
 
 # Rules
 all: $(NAME)
 
+## push_swap 
+$(NAME): $(LIBFT) $(LIBPS) $(PSMAINOBJ)
+	$(CC) $(CFLAGS) $(PSMAINOBJ) $(LIBPS) $(LIBFT) -o $(NAME)
+
+## checker
+bonus: $(BONUS)
+
+$(BONUS): $(LIBFT) $(LIBPS) $(CHECKOBJ)
+	$(CC) $(CFLAGS) $(CHECKOBJ) $(LIBPS) $(LIBFT) -o $(BONUS)
+
+## libpushswap
+$(LIBPS): $(PSOBJ)
+	ar rcs $(LIBPS) $(PSOBJ)
+
+## libft
 $(LIBFT):
-	$(MAKE) -C $(LIBDIR)
+	$(MAKE) -C $(LIBFTDIR)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -I $(INCDIR) $(OBJ) $(LIBFT) -o $(NAME)
+## Obj compilation
+$(SRCDIR)/%.o: $(SRCDIR)/%.c $(PSHEADER)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(SRCDIR)/%.o: $(SRCDIR)/%.c $(HEADER)
-	$(CC) $(CFLAGS) -I $(INCDIR) -c $< -o $@
+$(PSMAINOBJ): $(PSMAIN) $(PSHEADER)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-bonus:
+$(CHECKDIR)/%.o: $(CHECKDIR)/%.c $(CHECKHEADER)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
+## Cleaning
 clean:
-	$(MAKE) clean -C $(LIBDIR)
-	rm -f $(OBJ)
+	$(MAKE) clean -C $(LIBFTDIR)
+	rm -f $(PSOBJ) $(PSMAINOBJ) $(CHECKOBJ)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBDIR)
-	rm -f $(NAME)
+	$(MAKE) fclean -C $(LIBFTDIR)
+	rm -f $(NAME) $(BONUS) $(LIBPS)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

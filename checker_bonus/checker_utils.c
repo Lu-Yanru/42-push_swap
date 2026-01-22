@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 18:34:20 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/21 18:02:08 by yanlu            ###   ########.fr       */
+/*   Created: 2026/01/20 16:35:45 by yanlu             #+#    #+#             */
+/*   Updated: 2026/01/22 14:33:53 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "../includes/checker.h"
 
-# include "../libft/libft.h"
-# include "../includes/push_swap.h"
+void	ft_strcpy(char *dst, char *src, int len)
+{
+	int	i;
 
-/* Read line */
-int		read_line(char **line);
+	if (!src)
+		return ;
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
 
-/* Exec ops */
-void	exec_ops(char *line, t_node **stack_a, t_node **stack_b);
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
 
-/* Untilities */
-void	ft_strcpy(char *dst, char *src, int len);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}

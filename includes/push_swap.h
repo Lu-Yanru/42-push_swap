@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:13:08 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/19 18:28:28 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 14:28:07 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,25 @@ void	free_stack(t_node **stack);
 void	assign_index(t_node **stack);
 
 /* Operations */
+void	swap(t_node **stack);
 void	sa(t_node **stack_a, int n);
 void	sb(t_node **stack_b, int n);
 void	ss(t_node **stack_a, t_node **stack_b, int n);
+void	rotate(t_node **stack);
 void	ra(t_node **stack_a, int n);
 void	rb(t_node **stack_b, int n);
 void	rr(t_node **stack_a, t_node **stack_b, int n);
+void	rev_rotate(t_node **stack);
 void	rra(t_node **stack_a, int n);
 void	rrb(t_node **stack_b, int n);
 void	rrr(t_node **stack_a, t_node **stack_b, int n);
+void	push(t_node **dst, t_node **src);
 void	pa(t_node **stack_a, t_node **stack_b, int n);
 void	pb(t_node **stack_b, t_node **stack_a, int n);
 
 /* Sort main */
 void	sort(t_node **stack_a, t_node **stack_b, int size);
+int		check_sorted(t_node *stack);
 void	push_opt(t_node **stack_a, t_node **stack_b, t_move *move, int dir);
 
 /* Sort LIS */

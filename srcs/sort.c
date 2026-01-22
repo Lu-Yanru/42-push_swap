@@ -6,18 +6,18 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/21 12:31:00 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 14:25:03 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/unused-push_swap_circular.h"
+#include "../includes/push_swap.h"
 
 /*
 @brief A function that checks whether a stack is sorted or not.
 @param stack The stack to be checked.
 @return 1 if the stack is sorted. 0 if not.
 */
-static int	check_sorted(t_node *stack)
+int	check_sorted(t_node *stack)
 {
 	if (!stack)
 		return (1);

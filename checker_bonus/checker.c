@@ -6,25 +6,33 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:21:57 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/21 18:20:58 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 15:58:49 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/checker.h"
 
 static int	process_instructions(t_node **stack_a, t_node **stack_b)
 {
 	char	*line;
+	int		bytes_rd;
 
-	while (read_line(&line) > 0)
+	while (1)
 	{
+		bytes_rd = read_line(&line);
+		if (bytes_rd < 0)
+		{
+			if (line)
+				free(line);
+			return (0);
+		}
+		if (bytes_rd == 0)
+			break ;
 		if (!line)
-			continue ;
+			return (0);
 		exec_ops(line, stack_a, stack_b);
 		free(line);
-	}
-	if (read_line(&line) < 0)
-		return (0);                                                                                                        
+	}                                                                                                       
 	return (1);
 }
 
