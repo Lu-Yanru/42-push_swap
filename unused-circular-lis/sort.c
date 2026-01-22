@@ -6,11 +6,11 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 08:51:06 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/22 16:20:37 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 16:31:54 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 /*
 @brief A function that checks whether a stack is sorted or not.
