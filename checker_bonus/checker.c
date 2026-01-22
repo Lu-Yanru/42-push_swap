@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:21:57 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/22 15:58:49 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 16:28:45 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	process_instructions(t_node **stack_a, t_node **stack_b)
 			return (0);
 		exec_ops(line, stack_a, stack_b);
 		free(line);
-	}                                                                                                       
+	}
 	return (1);
 }
 

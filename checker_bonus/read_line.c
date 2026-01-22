@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:15:12 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/22 16:02:27 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/22 16:29:11 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*join_char(char *str, char c, int len)
 	char	*res;
 
 	res = malloc((len + 2) * sizeof(char));
-	if  (!res)
+	if (!res)
 	{
 		if (str)
 			free(str);
