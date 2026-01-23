@@ -6,11 +6,25 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:51:24 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/21 12:20:25 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/20 15:18:24 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/*
+@brief A function that rotates the smallest number to the top of the stack.
+*/
+void	rotate_to_ascend(t_node **stack, int size)
+{
+	int	min_ind;
+
+	min_ind = get_smallest_index(*stack);
+	if (min_ind <= size / 2)
+		ra(stack, min_ind);
+	else
+		rra(stack, size - min_ind);
+}
 
 static void	do_ops_asc(t_node **stk_src, t_node **stk_dst, t_move *move)
 {

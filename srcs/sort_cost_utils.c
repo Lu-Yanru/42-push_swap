@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:26:44 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/15 18:17:46 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/20 13:40:29 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int	find_target_ascend(t_node *stack, int value)
 	tmp_val = (long) INT_MAX + 1;
 	while (tmp)
 	{
-		if (tmp->value <= tmp_val && tmp->value > value)
+		if (tmp->value < tmp_val && tmp->value > value)
 		{
 			tmp_val = tmp->value;
 			target_index = tmp->index;
@@ -134,7 +134,7 @@ static int	find_target_descend(t_node *stack, int value)
 	tmp_val = (long) INT_MIN - 1;
 	while (tmp)
 	{
-		if (tmp->value >= tmp_val && tmp->value < value)
+		if (tmp->value > tmp_val && tmp->value < value)
 		{
 			tmp_val = tmp->value;
 			target_index = tmp->index;

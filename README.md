@@ -39,7 +39,8 @@ The following operations can be used:
     - `2 3 1` -> `rra`
     - `3 1 2` -> `ra`
     - `3 2 1` -> `ra sa`
-  - If there are more than 3 elements:
+  - If there are 5 elements, find the smallest 2 elements and push them to stack b, sort stack a, push the 2 elements back.
+  - If there are more than 5 elements:
     - Step 1: Find the [longest increasing subsequence (LIS)](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) in `stack a`.
     - Step 2: Calculate the cost of putting each non-LIS numbers in `stack a` into its correct position in `stack b`, so that the numbers in `stack b` are in descending order.
     - Step 3: Push the number with the lowest cost to `stack b`. Repeat step 2 and 3 until all non-LIS numbers are in `stack b`. Or if the length of LIS is less than 3, repeat step 2 and 3 until there are 3 numbers left in `stack a`.
@@ -53,17 +54,13 @@ The checker confirms the result of the sorting. It displays "OK" if `stack a` is
 If there is something other than the commands are printed out by the push_swap program, or if the provided arguments are invalid, the checker displays "Error".
 
 # Instructions
-Compile the program by running:
+Compile the push_swap program by running:
 
     make
 
 Run the program by supplementing the executable file with a set of integers. This will give you a list of actions taken to sort the stack:
 
     ./push_swap 2 1 3 6 5 8
-
-To test the program with randomly generated numbers, use the `shuf` command. It shuffles a series of positive integers randomly:
-
-    ARG=$(shuf -i 0-1000 -n 500); ./push_swap $ARG
 
 To run the program with numbers from a file instead of inputing the numbers directly from the command line:
 
@@ -72,6 +69,10 @@ To run the program with numbers from a file instead of inputing the numbers dire
 To calculate how many steps are taken to sort the stack, run:
 
     ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
+
+Complie the checker by running:
+
+	make checker
 
 To use the checker, run the following command:
 
@@ -97,3 +98,5 @@ To see the exit code:
 - [push_swap manual moves visualizer](https://phemsi-a.itch.io/push-swap)
 - [Random number generator](https://numbergenerator.org/randomnumbergenerator/1-100#!numbers=500&low=1&high=500&unique=true&csv=&oddeven=&oddqty=0&sorted=false&addfilters=)
 - [Doxygen style guide](https://micro-os-plus.github.io/develop/doxygen-style-guide/)
+
+AI was used to explain LIS in simple language with step-by-step examples.

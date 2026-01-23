@@ -6,7 +6,7 @@
 /*   By: yanlu <yanlu@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:23:14 by yanlu             #+#    #+#             */
-/*   Updated: 2026/01/16 17:13:00 by yanlu            ###   ########.fr       */
+/*   Updated: 2026/01/20 11:46:18 by yanlu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static char	*build_arg_str(int argc, char *argv[])
 			free(str);
 			return (NULL);
 		}
-		if (str[0] != '\0')
+		if (str[0] != '\0' && argv[i][0] != '\0')
 			str = ft_join_n_free(str, " ");
 		str = ft_join_n_free(str, argv[i]);
 		if (!str)
