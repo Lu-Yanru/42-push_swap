@@ -80,7 +80,7 @@ To use the checker, run the following command:
 
 To use the checker with a file:
 
-	ARG="$(< filepath>)"; ./push_swap $ARG | ./checker $ARG
+	ARG="$(< test.txt)"; ./push_swap $ARG | ./checker $ARG
 
 In case of error (e.g. the input contains other symbols than integers, the input numbers are not unique), the program displays "Error" on the standard error. This can be checked by running:
 
