@@ -29,3 +29,5 @@ https://github.com/ael-bekk/push_swap_tester
 
 Others
 https://micro-os-plus.github.io/develop/doxygen-style-guide/
+valgrind cheat sheet:
+https://bytes.usc.edu/cs104/wiki/valgrind/
